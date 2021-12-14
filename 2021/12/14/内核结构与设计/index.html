@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>计算机系统漫游 | Yan Shaowei`s blog</title>
+  <title>内核结构与设计 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="内核结构与设计计算机中的资源硬件资源 总线，负责连接各种其它设备，是其它设备工作的基础。 CPU，即中央处理器，负责执行程序和处理数据运算。  内存，负责储存运行时的代码和数据。  硬盘，负责长久储存用户文件数据。  网卡，负责计算机与计算机之间的通信。  显卡，负责显示工作。  各种 I&#x2F;O 设备，如显示器，打印机，键盘，鼠标等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机系统漫游">
-<meta property="og:url" content="http://example.com/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:title" content="内核结构与设计">
+<meta property="og:url" content="http://example.com/2021/12/14/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
 <meta property="og:description" content="内核结构与设计计算机中的资源硬件资源 总线，负责连接各种其它设备，是其它设备工作的基础。 CPU，即中央处理器，负责执行程序和处理数据运算。  内存，负责储存运行时的代码和数据。  硬盘，负责长久储存用户文件数据。  网卡，负责计算机与计算机之间的通信。  显卡，负责显示工作。  各种 I&#x2F;O 设备，如显示器，打印机，键盘，鼠标等。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/hardware.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/macro%20kernel.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/micro%20kernel.png">
-<meta property="article:published_time" content="2021-12-12T07:41:48.000Z">
-<meta property="article:modified_time" content="2021-12-14T08:24:25.229Z">
+<meta property="article:published_time" content="2021-12-14T09:01:48.000Z">
+<meta property="article:modified_time" content="2021-12-14T09:02:04.082Z">
 <meta property="article:author" content="Yan Shaowei">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
@@ -232,13 +232,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      计算机系统漫游
+      内核结构与设计
     </h1>
   
 
         
-        <a href="/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
-  	<time datetime="2021-12-12T07:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-12</time>
+        <a href="/2021/12/14/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2021-12-14T09:01:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
 </a>
         
       </header>
@@ -380,7 +380,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/14/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -394,18 +394,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/12/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          计算机系统漫游
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/07/04/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">错误的集合</div>
+    <a href="/2021/12/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机系统漫游</div>
       <i class="icon-circle-right"></i>
     </a>
   

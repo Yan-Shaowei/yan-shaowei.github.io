@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Java基础 | Yan Shaowei`s blog</title>
+  <title>Archives: 2021/12 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对Java平台的理解：Java是一种面向对象的程序语言。最主要的特点有两个：  跨平台能力好，“一次编译，到处运行” 垃圾收集，Java通过垃圾收集器回收分配内存，大部分情况不需要程序员分配和回收内存  我们平时会接触到JRE和JDK,他俩的区别是：  JRE，Java runtime environment，即Java的运行环境，包含了JVM和Java类库，以及一些模块。 JDK，Java de">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java基础">
-<meta property="og:url" content="http://example.com/2021/04/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Yan Shaowei&#96;s blog">
+<meta property="og:url" content="http://example.com/archives/2021/12/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
-<meta property="og:description" content="对Java平台的理解：Java是一种面向对象的程序语言。最主要的特点有两个：  跨平台能力好，“一次编译，到处运行” 垃圾收集，Java通过垃圾收集器回收分配内存，大部分情况不需要程序员分配和回收内存  我们平时会接触到JRE和JDK,他俩的区别是：  JRE，Java runtime environment，即Java的运行环境，包含了JVM和Java类库，以及一些模块。 JDK，Java de">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-15T15:39:48.000Z">
-<meta property="article:modified_time" content="2021-04-15T15:46:36.638Z">
 <meta property="article:author" content="Yan Shaowei">
-<meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
@@ -221,204 +216,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-计算机系统漫游" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Java基础
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/12/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/" class="archive-article-date">
+  	<time datetime="2021-12-12T07:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-12</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/12/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/">计算机系统漫游</a>
     </h1>
   
 
-        
-        <a href="/2021/04/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/" class="archive-article-date">
-  	<time datetime="2021-04-15T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="对Java平台的理解："><a href="#对Java平台的理解：" class="headerlink" title="对Java平台的理解："></a>对Java平台的理解：</h1><p>Java是一种面向对象的程序语言。最主要的特点有两个：</p>
-<ul>
-<li>跨平台能力好，“一次编译，到处运行”</li>
-<li>垃圾收集，Java通过垃圾收集器回收分配内存，大部分情况不需要程序员分配和回收内存</li>
-</ul>
-<p>我们平时会接触到JRE和JDK,他俩的区别是：</p>
-<ul>
-<li>JRE，Java runtime environment，即Java的运行环境，包含了JVM和Java类库，以及一些模块。</li>
-<li>JDK，Java development kit，即Java开发工具，除了包含JRE的功能外，还提供了编译器、诊断工具等。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="Java是解释执行的么？"><a href="#Java是解释执行的么？" class="headerlink" title="Java是解释执行的么？"></a>Java是解释执行的么？</h2><p>编译型语言：把做好的源代码全部编译成可运行程序，然后直接运行程序。执行速度快，效率高，依靠编译器、跨平台性差。<br>解释型语言：把源代码翻译一句，执行一句。执行速度慢，效率低，依靠解释器、跨平台性好。</p>
-<p>这个说法不太准确，我们开发的Java代码，通过Javac编译成字节码，然后在运行时通过Java虚拟机内嵌的解释器将字节码转换为最终的机器码。</p>
-<p>但是常见的JVM都提供了JIT编译器，即动态编译器，可以在运行时，将热点代码编译成机器码，这种情况下，部分热点代码就属于编译执行了。</p>
-<h1 id="Exception和Error的区别"><a href="#Exception和Error的区别" class="headerlink" title="Exception和Error的区别"></a>Exception和Error的区别</h1><p>异常处理机制<br>Exception和Error都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本组成类型。</p>
-<p>Exception是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。</p>
-<p>Exception又分为可检查异常和不检查异常，可检查异常在源代码里必须显示地进行捕获处理，是编译期检查的一部分。不检查异常就是所谓的运行时异常，通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获。</p>
-<p>Error是指正常情况下，不大可能出现的情况，绝大部分的Error都会导致程序处于非正常、不可恢复状态。</p>
-<p>异常处理的两个基本原则：</p>
-<ul>
-<li>尽量不要捕获类似Exception这样的通用异常，而是应该捕获特定异常。</li>
-<li>不要生吞异常。</li>
-</ul>
-<p>Throw early，catch late原则<br>在发现问题时，第一时间抛出，能够更加清晰地反映问题。<br>不知道如何处理捕获异常时，可以选择保留原有的异常cause信息，直接再抛出或者构建新的异常抛出，在更高层面，去处理。</p>
-<h2 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h2><ul>
-<li>try-catch代码段会产生额外的性能开销，它会影响JVM对代码进行优化，所以建议仅捕获有必要的代码段，尽量不要用一个大的try包住整段的代码。利用异常控制代码流程比条件语句要低效。</li>
-<li>Java每实例化一个Exception,都会对栈进行快照，这是一个相对比较重的操作。如果发生的非常频繁，就不能被忽略了。</li>
-</ul>
-<h2 id="NoClassDefFoundError和ClassNotFoundException有什么区别"><a href="#NoClassDefFoundError和ClassNotFoundException有什么区别" class="headerlink" title="NoClassDefFoundError和ClassNotFoundException有什么区别"></a>NoClassDefFoundError和ClassNotFoundException有什么区别</h2><h2 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try-catch-finally"></a>try-catch-finally</h2><h2 id="throw和throws关键字"><a href="#throw和throws关键字" class="headerlink" title="throw和throws关键字"></a>throw和throws关键字</h2><h1 id="final、finally、finalize有什么不同："><a href="#final、finally、finalize有什么不同：" class="headerlink" title="final、finally、finalize有什么不同："></a>final、finally、finalize有什么不同：</h1><p>final可以用来修饰类、方法、变量，分别有不同的意义：</p>
-<ul>
-<li>修饰类，表示这个类无法被继承</li>
-<li>修饰方法，表示这个方法不能被重写</li>
-<li>修饰变量，表示这个变量不能被修改</li>
-</ul>
-<p>finally是Java保证重点代码一定要被执行的机制。</p>
-<p>finalize是基础类java.lang.Object的一个方法，它的设计目的是保证对象在被垃圾收集前，完成特定资源的回收。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/04/15/Java%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java基础
-        
-      </div>
-    </a>
   
   
-    <a href="/2021/04/13/%E6%8E%A2%E7%B4%A2%E4%BB%A5%E5%BF%AB%E8%91%97%E7%A7%B0%E7%9A%84Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">探索以快著称的Redis的数据结构</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9Java%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">对Java平台的理解：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%98%AF%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E7%9A%84%E4%B9%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Java是解释执行的么？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exception%E5%92%8CError%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">Exception和Error的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">性能分析：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NoClassDefFoundError%E5%92%8CClassNotFoundException%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">2.2.</span> <span class="toc-text">NoClassDefFoundError和ClassNotFoundException有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-catch-finally"><span class="toc-number">2.3.</span> <span class="toc-text">try-catch-finally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#throw%E5%92%8Cthrows%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.4.</span> <span class="toc-text">throw和throws关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#final%E3%80%81finally%E3%80%81finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">final、finally、finalize有什么不同：</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -441,8 +292,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -536,6 +387,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
             
             <div class="clearfix"></div>

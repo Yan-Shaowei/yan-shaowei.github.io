@@ -297,6 +297,143 @@
 
 
   
+    <article id="post-内核结构与设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/">计算机系统漫游</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2021-12-12T07:41:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="内核结构与设计"><a href="#内核结构与设计" class="headerlink" title="内核结构与设计"></a>内核结构与设计</h1><h2 id="计算机中的资源"><a href="#计算机中的资源" class="headerlink" title="计算机中的资源"></a>计算机中的资源</h2><h3 id="硬件资源"><a href="#硬件资源" class="headerlink" title="硬件资源"></a>硬件资源</h3><ol>
+<li>总线，负责连接各种其它设备，是其它设备工作的基础。</li>
+<li>CPU，即中央处理器，负责执行程序和处理数据运算。</li>
+<li> 内存，负责储存运行时的代码和数据。</li>
+<li> 硬盘，负责长久储存用户文件数据。</li>
+<li> 网卡，负责计算机与计算机之间的通信。</li>
+<li> 显卡，负责显示工作。</li>
+<li> 各种 I/O 设备，如显示器，打印机，键盘，鼠标等。<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/hardware.png"></li>
+</ol>
+<h3 id="软件资源"><a href="#软件资源" class="headerlink" title="软件资源"></a>软件资源</h3><p>计算机中的软件资源，则可表示为计算机中的各种形式的数据。如各种文件、软件程序等。</p>
+<h2 id="内核的内部组成逻辑"><a href="#内核的内部组成逻辑" class="headerlink" title="内核的内部组成逻辑"></a>内核的内部组成逻辑</h2><ol>
+<li><p>管理 CPU，由于 CPU 是执行程序的，而内核把运行时的程序抽象成进程，所以又称为进程管理。</p>
+</li>
+<li><p>管理内存，由于程序和数据都要占用内存，内存是非常宝贵的资源，所以内核要非常小心地分配、释放内存。</p>
+</li>
+<li><p>管理硬盘，而硬盘主要存放用户数据，而内核把用户数据抽象成文件，即管理文件，文件需要合理地组织，方便用户查找和读写，所以形成了文件系统。</p>
+</li>
+<li><p>管理显卡，负责显示信息，而现在操作系统都是支持 GUI（图形用户接口）的，管理显卡自然而然地就成了内核中的图形系统。</p>
+</li>
+<li><p>管理网卡，网卡主要完成网络通信，网络通信需要各种通信协议，最后在内核中就形成了网络协议栈，又称网络组件。</p>
+</li>
+<li><p>管理各种 I/O 设备，我们经常把键盘、鼠标、打印机、显示器等统称为 I/O（输入输出）设备，在内核中抽象成 I/O 管理器。</p>
+</li>
+</ol>
+<h1 id="经典内核结构"><a href="#经典内核结构" class="headerlink" title="经典内核结构"></a>经典内核结构</h1><h2 id="宏内核结构"><a href="#宏内核结构" class="headerlink" title="宏内核结构"></a>宏内核结构</h2><p>宏内核就是把以上诸如管理进程的代码、管理内存的代码、管理各种 I/O 设备的代码、文件系统的代码、图形系统代码以及其它功能模块的代码，把这些所有的代码经过编译，最后链接在一起，形成一个大的可执行程序。<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/macro%20kernel.png"></p>
+<p>尽管图中一层一层的，这并不是它们有层次关系，仅仅表示它们链接在一起。</p>
+<p>内存分配功能的服务过程举例：</p>
+<ol>
+<li>应用程序调用内存分配的 API（应用程序接口）函数。</li>
+<li>处理器切换到特权模式，开始运行内核代码。</li>
+<li>内核里的内存管理代码按照特定的算法，分配一块内存。</li>
+<li>把分配的内存块的首地址，返回给内存分配的 API 函数。</li>
+<li>内存分配的 API 函数返回，处理器开始运行用户模式下的应用程序，应用程序就得到了一块内存的首地址，并且可以使用这块内存了。</li>
+</ol>
+<p>优点：</p>
+<p>性能很好，在内核中这些组件可以相互调用，性能极高。</p>
+<p>缺点：</p>
+<p>没有模块化，没有扩展性、没有移植性，高度耦合在一起，一旦其中一个组件有漏洞，内核中所有的组件可能都会出问题。</p>
+<h2 id="微内核结构"><a href="#微内核结构" class="headerlink" title="微内核结构"></a>微内核结构</h2><p>微内核架构正好与宏内核架构相反，它提倡内核功能尽可能少：仅仅只有进程调度、处理中断、内存空间映射、进程间通信等功能。</p>
+<p>开发者们把实际的进程管理、内存管理、设备管理、文件管理等服务功能，做成一个个服务进程。和用户应用进程一样，只是它们很特殊，宏内核提供的功能，在微内核架构里由这些服务进程专门负责完成。</p>
+<p>微内核定义了一种良好的进程间通信的机制——消息。应用程序要请求相关服务，就向微内核发送一条与此服务对应的消息，微内核再把这条消息转发给相关的服务进程，接着服务进程会完成相关的服务。服务进程的编程模型就是循环处理来自其它进程的消息，完成相关的服务功能。其结构如下所示：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/micro%20kernel.png"></p>
+<p>内存分配功能的服务过程举例：</p>
+<ol>
+<li>应用程序发送内存分配的消息，这个发送消息的函数是微内核提供的，相当于系统 API，微内核的 API（应用程序接口）相当少，极端情况下仅需要两个，一个接收消息的 API 和一个发送消息的 API。</li>
+<li>处理器切换到特权模式，开始运行内核代码。</li>
+<li>微内核代码让当前进程停止运行，并根据消息包中的数据，确定消息发送给谁，分配内存的消息当然是发送给内存管理服务进程。</li>
+<li>内存管理服务进程收到消息，分配一块内存。</li>
+<li>内存管理服务进程，也会通过消息的形式返回分配内存块的地址给内核，然后继续等待下一条消息。</li>
+<li>微内核把包含内存块地址的消息返回给发送内存分配消息的应用程序。</li>
+<li>处理器开始运行用户模式下的应用程序，应用程序就得到了一块内存的首地址，并且可以使用这块内存了。</li>
+</ol>
+<p>优点：</p>
+<p>首先，系统结构相当清晰利于协作开发。其次，系统有良好的移植性，微内核代码量非常少，就算重写整个内核也不是难事。最后，微内核有相当好的伸缩性、扩展性，因为那些系统功能只是一个进程，可以随时拿掉一个服务进程以减少系统功能，或者增加几个服务进程以增强系统功能。</p>
+<p>缺点：</p>
+<p>同样是分配内存，在微内核下拐了几个弯，一来一去的消息带来了非常大的开销，当然各个服务进程的切换开销也不小。这样系统性能就大打折扣。</p>
+<h2 id="分离硬件的相关性"><a href="#分离硬件的相关性" class="headerlink" title="分离硬件的相关性"></a>分离硬件的相关性</h2><p>计算机一层层构建起来，从硬件层到操作系统层再到应用软件层。分层的目的和好处在于屏蔽底层细节，使上层开发更加简单。</p>
+<p>计算机领域的一个基本方法就是增加一个抽象层，从而使得抽象层的上下两层独立地发展，所以内核内部也会再分为若干层。</p>
+<p>分离硬件的相关性，就是要把操作硬件和处理硬件功能差异的代码抽离出来，形成一个独立的<strong>软件抽象层</strong>，对外提供相应的接口，方便上层开发。</p>
+<h3 id="进程调度模块"><a href="#进程调度模块" class="headerlink" title="进程调度模块"></a>进程调度模块</h3><p>进程是操作系统开发者为了实现多任务而提出的，并让每个进程在CPU上运行一小段时间，这样就能实现多任务同时运行的假象。</p>
+<p>为了实现这种假象，需要：</p>
+<ol>
+<li>进程调度，目的是要从众多进程中选择一个将要运行的进程，有各种选择算法，如轮转算法、优先级算法等。</li>
+<li>进程切换，目的是停止当前进程，运行新的进程，主要动作是保存当前进程的机器上下文，装载新进程的机器上下文。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-错误的集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -906,84 +1043,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/05/11/MySQL%E7%AE%80%E4%BB%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RabbitMQ简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/06/RabbitMQ%E7%AE%80%E4%BB%8B/">RabbitMQ简介</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/06/RabbitMQ%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2021-05-06T15:56:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="RabbitMQ是什么"><a href="#RabbitMQ是什么" class="headerlink" title="RabbitMQ是什么"></a>RabbitMQ是什么</h1><p>MQ全称是Message Queue，即消息队列，基于AMQP(Advanced Message Queue高级消息队列协议）协议实现的消息队列，它是一种应用程序之间的通信方法，消息队列在分布式系统开发中应用非常广泛。</p>
-<h1 id="消息队列的应用场景"><a href="#消息队列的应用场景" class="headerlink" title="消息队列的应用场景"></a>消息队列的应用场景</h1><ul>
-<li>任务异步处理<br>将不需要同步处理的并且耗时长的操作由消息队列通知消息接收方进行异步处理，提高应用程序的响应时间。</li>
-<li>应用程序解耦合<br>MQ相当于一个中介，生产方通过MQ与消费方交互，将应用解耦合。</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/06/RabbitMQ%E7%AE%80%E4%BB%8B/">展开全文 >></a>
         </p>
       
 

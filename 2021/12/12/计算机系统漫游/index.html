@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
 <meta property="og:description" content="编译系统编译型语言和解释型语言 编译型语言在编译过程中生成目标平台的指令，解释型语言在运行过程中才生成目标平台的指令。 虚拟机的任务是在运行过程中将中间代码翻译成目标平台的指令。  编译型语言的代表是C，源代码被编译之后生成中间文件（.o和.obj），然后用连接器和汇编器生成机器码，也就是一系列基本操作的序列，机器码最后被执行生成最终动作。 解释型的语言以Ruby为例，也经历了这些步骤，不同的是，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/compliers-and-interpreters.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/compilation-system-workflow.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/hardware-structure.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/storage.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/virtual-memory.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/concurrent-and-parallel.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/compliers-and-interpreters.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/compilation-system-workflow.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/hardware-structure.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/storage.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/virtual-memory.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/concurrent-and-parallel.png">
 <meta property="article:published_time" content="2021-12-12T07:41:48.000Z">
-<meta property="article:modified_time" content="2021-12-14T06:39:47.882Z">
+<meta property="article:modified_time" content="2021-12-14T08:18:28.882Z">
 <meta property="article:author" content="Yan Shaowei">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/compliers-and-interpreters.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/compliers-and-interpreters.png">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
   
@@ -266,10 +266,10 @@
 </li>
 <li><p>.NET 的CLR运行时是Windows的组成部分，编译好的.NET 系列语言的代码直接生成可执行文件，然后被“直接”执行。</p>
 </li>
-<li><p>JavaScript可以被V8引擎编译为机器码然后执行，如果在node.js下，这个编译结果被缓存起来了，跟编译好再执行的C没有什么区别。<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/compliers-and-interpreters.png"></p>
+<li><p>JavaScript可以被V8引擎编译为机器码然后执行，如果在node.js下，这个编译结果被缓存起来了，跟编译好再执行的C没有什么区别。<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/compliers-and-interpreters.png"></p>
 </li>
 </ul>
-<h2 id="编译系统的工作流程"><a href="#编译系统的工作流程" class="headerlink" title="编译系统的工作流程"></a>编译系统的工作流程</h2><p>以C语言为例，大致分为四个阶段：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/compilation-system-workflow.png" alt="complier-system"></p>
+<h2 id="编译系统的工作流程"><a href="#编译系统的工作流程" class="headerlink" title="编译系统的工作流程"></a>编译系统的工作流程</h2><p>以C语言为例，大致分为四个阶段：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/compilation-system-workflow.png"></p>
 <ul>
 <li>预处理：预处理器会根据以#为开头的代码，来修改原始程序。hello.c经过预处理器后，得到hello.i</li>
 <li>编译：编译器会进行包括词法分析、语法分析、语义分析、中间代码生成以及优化等一系列中间操作，将hello.i文件翻译成hello.s文件</li>
@@ -281,7 +281,7 @@
 <li>帮助理解链接过程中出现的错误</li>
 <li>避免安全漏洞</li>
 </ol>
-<h1 id="硬件架构图"><a href="#硬件架构图" class="headerlink" title="硬件架构图"></a>硬件架构图</h1><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/hardware-structure.png"></p>
+<h1 id="硬件架构图"><a href="#硬件架构图" class="headerlink" title="硬件架构图"></a>硬件架构图</h1><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/hardware-structure.png"></p>
 <h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><p>中央处理单元(Central Processing Unit)，也称处理器，包含：</p>
 <ul>
 <li>PC（Program Count，程序计数器）<ul>
@@ -317,7 +317,7 @@
 <li>内存 1~100GB</li>
 <li>磁盘 1~1000TB</li>
 </ul>
-<p>整个计算机系统的信息存储可以用一个层次结构来表示：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/storage.png"></p>
+<p>整个计算机系统的信息存储可以用一个层次结构来表示：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/storage.png"></p>
 <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="操作系统的作用"><a href="#操作系统的作用" class="headerlink" title="操作系统的作用"></a>操作系统的作用</h2><p>无论是shell程序还是hello程序都没有直接访问键盘、显示器、磁盘这些硬件设备，真正操作硬件的是操作系统，我们可以把操作系统看成是应用程序和硬件之间的中间层，所有应用程序对硬件的操作必须通过操作系统来完成。这样设计的目的：</p>
 <ol>
 <li>防止硬件被失控的应用程序滥用；</li>
@@ -332,7 +332,7 @@
 <p>上下文：操作系统保持跟踪进程运行所需的所有状态信息，包括PC和寄存器文件的当前值、主存的内容等</p>
 <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>一个进程实际上由多个线程组成，每个线程都运行在进程的上下文中，共享代码和数据。由于网络服务器对并行处理的需求，线程成为越来越重要的编程模型。</p>
 <h2 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h2><p>操作系统为每个进程提供了一个假象，就是每个进程都在独自占用整个内存空间，每个进程看到的内存都是一样的，我们称之为虚拟地址空间。</p>
-<p>下图为Linux的虚拟地址空间，从下往上看，地址是增大的：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/virtual-memory.png"></p>
+<p>下图为Linux的虚拟地址空间，从下往上看，地址是增大的：<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/virtual-memory.png"></p>
 <ul>
 <li>第一个区域是用来存放程序的代码和数据的，这个区域的内容是从可执行目标文件中加载而来的。</li>
 <li>顺着地址增大的方向，继续往上是堆（heap）。程序的代码和数据区在程序一开始的时候就被指定了大小，但是堆可以在运行时动态的扩展和收缩。</li>
@@ -346,7 +346,7 @@
 <li>虽然文件的概念非常简单，却非常强大。例如：当程序员需要处理读写磁盘上的文件时，不需要了解具体的磁盘技术，同一个程序，可以在不同磁盘技术上的不同系统上运行。</li>
 </ul>
 <h2 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h2><p>并发：强调有处理多个任务的能力</p>
-<p>并行：强调同时处理多个任务的能力<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/concurrent-and-parallel.png"></p>
+<p>并行：强调同时处理多个任务的能力<img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/concurrent-and-parallel.png"></p>
 <h3 id="如何获得更高的计算能力："><a href="#如何获得更高的计算能力：" class="headerlink" title="如何获得更高的计算能力："></a>如何获得更高的计算能力：</h3><ol>
 <li>线程级并发：通过增加CPU的核心数，可以提高系统的性能；使用超线程，也称同时多线程，即使用多个PC和寄存器堆减少线程切换的等待时间。</li>
 <li>指令级并行：现代处理器可以同时执行多条指令的属性。</li>
@@ -471,8 +471,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2021/07/04/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">错误的集合</div>
+    <a href="/2021/12/12/%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机系统漫游</div>
       <i class="icon-circle-right"></i>
     </a>
   

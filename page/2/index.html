@@ -218,6 +218,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/11/MySQL%E7%AE%80%E4%BB%8B/">MySQL简介</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/11/MySQL%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2021-05-10T17:35:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h1><p>MySQL可以分为Server层和存储引擎层两部分。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/MySQL%E7%9A%84%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.JPG"></p>
+<p>Server层包括：</p>
+<ul>
+<li>连接器</li>
+<li>查询缓存</li>
+<li>分析器</li>
+<li>优化器</li>
+<li>执行器</li>
+</ul>
+<p>Server层涵盖MySQL的大多数核心服务功能，以及所有的内置函数，所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
+<p>存储引擎层负责数据的存储和提取。其架构模式是插件式的，支持InnoDB、MyISAM、Memory等多个存储引擎。其中最常用以及默认的存储引擎是InnoDB。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/11/MySQL%E7%AE%80%E4%BB%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-RabbitMQ简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -901,82 +986,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java基础（2）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/">Java基础（2）</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-04-17T05:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="强引用、软引用、弱引用、幻象引用有什么区别，使用场景是什么？"><a href="#强引用、软引用、弱引用、幻象引用有什么区别，使用场景是什么？" class="headerlink" title="强引用、软引用、弱引用、幻象引用有什么区别，使用场景是什么？"></a>强引用、软引用、弱引用、幻象引用有什么区别，使用场景是什么？</h1><p>不同的引用类型，主要体现的是对象不同的可达性（reachable）状态和对垃圾收集的影响。</p>
-<h2 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h2><p>强引用就是我们常见的普通对象引用，只要还有强引用指向对象，表明对象还“活着”，垃圾收集器就不会回收这个对象。对于一个普通对象，如果没有其他的引用关系，只要超过了引用的作用域或者显示地将相应引用赋值为null，就是可以被垃圾收集的了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/">展开全文 >></a>
         </p>
       
 

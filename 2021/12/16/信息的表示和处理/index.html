@@ -20,8 +20,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/signed%20number%20to%20unsigned.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/unsigned%20number%20to%20signed.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/IEEE%20float%20number.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/IEEE%20formal%20value.png">
 <meta property="article:published_time" content="2021-12-16T04:33:48.000Z">
-<meta property="article:modified_time" content="2021-12-17T02:21:12.276Z">
+<meta property="article:modified_time" content="2021-12-17T03:01:46.260Z">
 <meta property="article:author" content="Yan Shaowei">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
@@ -341,7 +342,35 @@
 <li>阶码字段的二进制位全为0时，表示的数值是非规格化的值。</li>
 <li>阶码字段的二进制位全为1时，表示的数值是特殊值。特殊值分两类，一类是无穷大/小，一类表示“不是一个数”。</li>
 </ol>
-<h3 id="规格化的值"><a href="#规格化的值" class="headerlink" title="规格化的值"></a>规格化的值</h3><p>最小值是1，最大值是254.</p>
+<h3 id="规格化的值"><a href="#规格化的值" class="headerlink" title="规格化的值"></a>规格化的值</h3><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/IEEE%20formal%20value.png"></p>
+<p>当表示规格化的值时，阶码字段的取值范围最小值是1，最大值是254。用e表示8位二进制数，阶码E的值不等于e所表示的值，而是e的值减去一个偏置量。</p>
+<p>E = e - bias</p>
+<ul>
+<li>当表示单精度的值时，E的长度为8，偏置量为127.</li>
+<li>当表示双精度的值时，E的长度为11，偏置量等于1023.</li>
+</ul>
+<p>因此结合e的范围[1,254]，对于单精度浮点数，E的取值范围[-126,127]。</p>
+<p>尾数M为1+f。</p>
+<h3 id="非规格化的值"><a href="#非规格化的值" class="headerlink" title="非规格化的值"></a>非规格化的值</h3><p>非规格化的数有两个用途：</p>
+<ol>
+<li>表示数值0：当阶码字段全为0，小数字段也全为0时，s=0表示正0，s=1表示负0。</li>
+<li>可以表示非常接近0的数：当阶码字段全为0时，E= 1 - bias， M=f</li>
+</ol>
+<h3 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h3><p>当阶码字段全为1，小数字段全为0时，表示无穷大。如果s=0，表示正无穷，s=1，表示负无穷。</p>
+<p>也会遇到运算结果不为实数或用无穷也无法表示的情况，可以使用NaN表示（Not a Number）。</p>
+<h3 id="舍入"><a href="#舍入" class="headerlink" title="舍入"></a>舍入</h3><ul>
+<li>向偶数舍入：向最近的方向舍入（如果是中间数值，会向偶数舍入）</li>
+<li>向零舍入：向0的方向舍入</li>
+<li>向下舍入：朝小的方向舍入</li>
+<li>向上舍入：朝大的方向舍入</li>
+</ul>
+<p>由于溢出或舍入而失去精度，浮点数的加法/乘法不具有结合性，以及乘法在加法上不具备分配性。</p>
+<p>tips：</p>
+<ul>
+<li>当int类型转换成float类型时，数字不会发生溢出，但可能会被舍入。</li>
+<li>从double类型转换成float类型，可能会发生溢出以及舍入。</li>
+<li>将float类型或double类型转换为int类型，可能会向零舍入或者发生溢出。</li>
+</ul>
 
       
 
@@ -454,7 +483,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">信息的表示和处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.</span> <span class="toc-text">信息的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%95%BF"><span class="toc-number">1.1.1.</span> <span class="toc-text">字长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97"><span class="toc-number">1.1.2.</span> <span class="toc-text">布尔运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">整数表示与编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E5%92%8C%E8%A1%A5%E7%A0%81%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">为什么要使用原码、反码和补码？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">有符号数和无符号数转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E6%96%AD"><span class="toc-number">1.2.3.</span> <span class="toc-text">截断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">整数运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.4.1.</span> <span class="toc-text">IEEE浮点表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E7%9A%84%E5%80%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">规格化的值</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">信息的表示和处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.</span> <span class="toc-text">信息的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%95%BF"><span class="toc-number">1.1.1.</span> <span class="toc-text">字长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97"><span class="toc-number">1.1.2.</span> <span class="toc-text">布尔运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">整数表示与编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E5%92%8C%E8%A1%A5%E7%A0%81%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">为什么要使用原码、反码和补码？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">有符号数和无符号数转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E6%96%AD"><span class="toc-number">1.2.3.</span> <span class="toc-text">截断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">整数运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.4.1.</span> <span class="toc-text">IEEE浮点表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E7%9A%84%E5%80%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">规格化的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%A7%84%E6%A0%BC%E5%8C%96%E7%9A%84%E5%80%BC"><span class="toc-number">1.4.3.</span> <span class="toc-text">非规格化的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC"><span class="toc-number">1.4.4.</span> <span class="toc-text">特殊值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%88%8D%E5%85%A5"><span class="toc-number">1.4.5.</span> <span class="toc-text">舍入</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

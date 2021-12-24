@@ -218,6 +218,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java提供了哪些IO方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/">Java提供了哪些IO方式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-04-19T15:43:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java提供了哪些IO方式"><a href="#Java提供了哪些IO方式" class="headerlink" title="Java提供了哪些IO方式"></a>Java提供了哪些IO方式</h1><p>JavaIO方式有很多种，基于不同的IO抽象模型和交互方式，可以进行简单区分：</p>
+<ol>
+<li>传统的java.io包，基于流模式实现，提供了我们最熟知的一些IO功能，比如File抽象、输入输出流等。交互方式是同步阻塞方式，即在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里，它们之间的调用是可靠的线性顺序。</li>
+</ol>
+<p>java.io包的好处是代码简单、直观，缺点是IO效率和扩展性存在局限性，容易成为应用性能瓶颈。</p>
+<ol start="2">
+<li>Java 1.4引入的NIO框架（java.nio包），提供了Channel、Selector、Buffer等新的抽象，可以构建多路复用的、同步非阻塞IO程序，同时提供了更接近操作系统底层的高性能数据操作方式。</li>
+<li>Java 7改进了NIO，即NIO 2，引入了异步非阻塞的IO方式，也称为AIO。异步IO操作基于事件和回调机制，可以简单理解为，应用操作直接返回，不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作。</li>
+</ol>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java基础（2）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -983,89 +1065,9 @@
 
 
   
-    <article id="post-Markdown语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/03/Markdown%E8%AF%AD%E6%B3%95/">Markdown语法</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/03/Markdown%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-03T15:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是Markdown"><a href="#什么是Markdown" class="headerlink" title="什么是Markdown"></a>什么是Markdown</h1><blockquote>
-<p>Markdown 是一种轻量级标记语言，创始人为 John Gruber。它允许人们「使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者 HTML）文档」。——维基百科</p>
-</blockquote>
-<p>简单来说Markdown是简单，容易学习的排版语法。</p>
-<h1 id="Markdown的本质"><a href="#Markdown的本质" class="headerlink" title="Markdown的本质"></a>Markdown的本质</h1><p>有些朋友觉得使用word也可以来编写文档，为什么要用Markdown呢？</p>
-<p>word等文本编辑工具功能强大，可以改变字体颜色，字体大小。功能多了，我们可能就会分散注意力到这些功能上。</p>
-<p>而对于Markdown,我们可以不用纠结于使用多大的字体，使用什么样的文本颜色。<strong>Markdown的本质就是让我们回归到内容本身，注重文章本身的结构，而不是样式。</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/03/Markdown%E8%AF%AD%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 

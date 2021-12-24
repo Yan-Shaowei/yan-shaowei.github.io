@@ -6,15 +6,50 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Yan Shaowei`s blog</title>
+  <title>程序的机器级表示 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yan Shaowei&#96;s blog">
-<meta property="og:url" content="http://example.com/archives/page/3/index.html">
+  <meta name="description" content="程序的机器级表示程序编译gcc -Og -o prog xxx.c  编译选项-Og：生成符合原始C代码整体结构的机器代码。如果为了获得更高的性能，会使用-O1或者-O2，甚至更高的编译优化选项，但是会使代码严重变形。 -o后面跟的参数prog表示生成可执行文件的文件名。   其中以.开头的行都是指导汇编器和链接器工作的伪指令，可以忽略。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序的机器级表示">
+<meta property="og:url" content="http://example.com/2021/12/17/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
+<meta property="og:description" content="程序的机器级表示程序编译gcc -Og -o prog xxx.c  编译选项-Og：生成符合原始C代码整体结构的机器代码。如果为了获得更高的性能，会使用-O1或者-O2，甚至更高的编译优化选项，但是会使代码严重变形。 -o后面跟的参数prog表示生成可执行文件的文件名。   其中以.开头的行都是指导汇编器和链接器工作的伪指令，可以忽略。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/example.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/contrast.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/general%20register.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/call%20strategy.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/C%20word.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/register%20history.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/register%20info.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/validAddress.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/memory%20types.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/zero%20extend.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/sign%20extend.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/one%20param%20operation.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/two%20params%20operation.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/mov%20pos%20oper.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/special%20calculate%20operation.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20register.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20register%20structure%20detail.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20register%20related%20operation.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20unsigned%20value.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/jump%20command.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20jump%20command.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/stack.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/register%20for%20param%20tranfer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/diff%20params%20use%20diff%20registers.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/double%20array%20cal.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/double%20array%20mov.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/data%20alignment.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/avaliable%20area.png">
+<meta property="article:published_time" content="2021-12-17T07:33:48.000Z">
+<meta property="article:modified_time" content="2021-12-24T16:09:41.861Z">
 <meta property="article:author" content="Yan Shaowei">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/example.png">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
   
@@ -216,405 +251,345 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-程序的机器级表示" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      程序的机器级表示
+    </h1>
+  
+
+        
+        <a href="/2021/12/17/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/" class="archive-article-date">
+  	<time datetime="2021-12-17T07:33:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><h2 id="程序编译"><a href="#程序编译" class="headerlink" title="程序编译"></a>程序编译</h2><p>gcc -Og -o prog xxx.c</p>
+<ul>
+<li>编译选项-Og：生成符合原始C代码整体结构的机器代码。如果为了获得更高的性能，会使用-O1或者-O2，甚至更高的编译优化选项，但是会使代码严重变形。</li>
+<li>-o后面跟的参数prog表示生成可执行文件的文件名。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/example.png"></p>
+<p>其中以.开头的行都是指导汇编器和链接器工作的伪指令，可以忽略。</p>
+<span id="more"></span>
+
+<p>gcc -Og -c xxx.c</p>
+<p>可以将文件翻译成机器码。</p>
+<p>objdump - 反汇编工具。汇编器将汇编代码翻译成二进制机器码，反汇编器将机器码翻译成汇编代码。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/contrast.png"></p>
+<h2 id="调用者保存寄存器和被调用者保存寄存器"><a href="#调用者保存寄存器和被调用者保存寄存器" class="headerlink" title="调用者保存寄存器和被调用者保存寄存器"></a>调用者保存寄存器和被调用者保存寄存器</h2><p>在Intel x86-64的的处理器中包含了16个通用目的的寄存器，用来存放整数数据和指针。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/general%20register.png"></p>
+<p>函数A中调用了函数B，A称为调用者，B称为被调用者。</p>
+<p>由于调用了函数B，寄存器rbx在函数B中被修改，逻辑寄存器rbx的内容在调用了函数B的前后应该保持一致，解决这个问题有两个策略：</p>
+<ul>
+<li>函数A在调用函数B之前，提前保存寄存器rbx的内容，执行完函数B之后，再恢复寄存器rbx原来存储的内容，这种策略就称之为调用者保存。</li>
+<li>函数B在使用寄存器rbx之前，先保存寄存器rbx的值，在函数B返回之前，先恢复寄存器rbx原来存储的内容，这种策略被称为被调用者保存。</li>
+</ul>
+<p>对于具体使用哪种策略，不同的寄存器被定义成不同的策略：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/call%20strategy.png"></p>
+<h2 id="汇编后缀"><a href="#汇编后缀" class="headerlink" title="汇编后缀"></a>汇编后缀</h2><p>Intel用字（word）来表示16位的数据类型，因此32位数据类型称为双字，64位称为四字。下表是C语言基本类型对应的汇编后缀表示：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/C%20word.png"></p>
+<ul>
+<li>GCC数据传输指令的四个变种：movb、movw、movl以及movq。</li>
+<li>其中movb是move byte的缩写，表示传输字节，以此类推。</li>
+</ul>
+<h2 id="寄存器历史"><a href="#寄存器历史" class="headerlink" title="寄存器历史"></a>寄存器历史</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/register%20history.png"></p>
+<p>不同的寄存器扮演着不同的角色，相应的编程规范规定了如何使用这些寄存器。</p>
+<ul>
+<li>rax用来保存函数的返回值</li>
+<li>rsp用来保存程序栈的结束位置</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/register%20info.png"></p>
+<h2 id="指令相关"><a href="#指令相关" class="headerlink" title="指令相关"></a>指令相关</h2><p>大多数指令包含两个部分：</p>
+<ul>
+<li>操作码：决定了CPU执行操作的类型</li>
+<li>操作数：操作码之后的部分，大多数指令具有一个或者多个操作数</li>
+</ul>
+<h3 id="操作数指示符"><a href="#操作数指示符" class="headerlink" title="操作数指示符"></a>操作数指示符</h3><ul>
+<li>以$符号开头为立即数，通常把在立即寻址方式指令中给出的数称之为立即数。</li>
+<li>寄存器带小括号表示内存引用。我们通常将内存抽象成一个字节数组，当需要从内存中存取数据时，需要获得目的数据的起始地址addr，以及数组长度b，b通常会省略。</li>
+</ul>
+<p>有效地址是通过立即数与基址寄存器的值相加，再加上变址寄存器与比例因子的乘积。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/validAddress.png"></p>
+<p>比例因子的取值与源代码中定义的数组类型有关，char类型的数组s=1，int类型s=4，double类型s=8。</p>
+<p>内存引用的其它形式：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/memory%20types.png"></p>
+<h3 id="mov指令"><a href="#mov指令" class="headerlink" title="mov指令"></a>mov指令</h3><p>mov类指令，有两个操作数，一个称为源操作数，另一个称为目的操作数。</p>
+<ul>
+<li>源操作数可以是立即数、寄存器或者内存引用。</li>
+<li>目的操作数要么是寄存器，要么是内存引用。</li>
+<li>x86-64处理器，mov指令的源操作数和目的操作数不能都是内存地址。当需要将内存中的一个数从一个位置复制到另一个位置时，需要两条mov指令完成。</li>
+<li>mov指令的后缀与寄存器的大小一定要匹配。</li>
+<li>当movq指令的源操作数是立即数时，立即数只能是32位的补码表示，对该数符号位扩展后，将得到的64位数传送到目的位置。</li>
+<li>当立即数是64位时，需要使用movabsq。该指令源操作数可以是任意的64位立即数，目的操作数只能是寄存器。</li>
+<li>当movl的目的操作数是寄存器时，它会把该寄存器的高4字节设置为0。</li>
+<li>当源操作数的数位小于目的操作数时，需要对目的操作数剩余的字节进行零扩展或者符号位扩展。</li>
+</ul>
+<h4 id="零扩展："><a href="#零扩展：" class="headerlink" title="零扩展："></a>零扩展：</h4><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/zero%20extend.png"></p>
+<h4 id="符号位扩展："><a href="#符号位扩展：" class="headerlink" title="符号位扩展："></a>符号位扩展：</h4><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/sign%20extend.png"></p>
+<p>符号位扩展还有一条没有操作数的特殊指令cltq，该指令的源操作数总是寄存器eax，目的操作数总是寄存器rax。</p>
+<p>寄存器的使用惯例：rdi和rsi分别用来保存函数传递的第一个参数和第二个参数。rdx保存第三个参数。</p>
+<p>c语言中所谓的指针其实就是地址。</p>
+<h3 id="push和pop指令"><a href="#push和pop指令" class="headerlink" title="push和pop指令"></a>push和pop指令</h3><p>程序栈本质上是内存中的一个区域。栈增长的方向是从高地址向低地址。因此，栈顶的元素是所有栈中元素地址中最低的。根据惯例，栈是倒过来画的，栈顶在底部，栈底在顶部。</p>
+<p>push指令的本质是将数据写入到内存中，pop指令就是从内存中读取数据，并修改栈顶指针。</p>
+<p>push指令执行的过程：</p>
+<ol>
+<li>指向栈顶的寄存器rsp进行一个减法操作</li>
+<li>然后将需要保存的数据复制到新的栈顶地址</li>
+</ol>
+<p>pop指令执行的过程：</p>
+<ol>
+<li>首先从栈顶的位置读出数据，复制到寄存器rbx</li>
+<li>将栈顶指针进行一个加法操作</li>
+</ol>
+<h3 id="leaq指令"><a href="#leaq指令" class="headerlink" title="leaq指令"></a>leaq指令</h3><p>leaq指令实现的功能是加载有效地址，q表示地址的长度是4个字，由于x86-64位处理器上，地址长度都是64位，因此不存在leab、leaw这类有关大小的变种。</p>
+<p>例如这条指令：leaq 7(%rdx,%rdx,4),%rax：</p>
+<ul>
+<li>表示的含义是把有效地址复制到寄存器rax中</li>
+<li>假设寄存器rdx内保存的数值是x，有效地址值=7+%rdx+%rdx*4=7+5x</li>
+<li>对于leaq指令执行的操作是将7+5x这个值直接写入到目的寄存器rax。</li>
+</ul>
+<h2 id="一元操作和二元操作"><a href="#一元操作和二元操作" class="headerlink" title="一元操作和二元操作"></a>一元操作和二元操作</h2><p>一元操作指令只有一个操作数，因此该操作数既是源操作数也是目的操作数，操作数可以是寄存器，也可以是内存地址。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/one%20param%20operation.png"></p>
+<p>二元操作指令包含两个操作数，第一个操作数是源操作数，可以是立即数、寄存器或者内存地址；第二个操作数既是源操作数也是目的操作数，这个操作数可以是寄存器或者内存地址，但不能是立即数。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/two%20params%20operation.png"></p>
+<h2 id="移位操作"><a href="#移位操作" class="headerlink" title="移位操作"></a>移位操作</h2><p>左移指令有两个，分别是SAL和SHL，二者效果一样，都是在右边填零。</p>
+<p>右移指令不同，分为算术右移和逻辑右移，算术右移需要填符号位，</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/mov%20pos%20oper.png"></p>
+<ul>
+<li>对于移位量k，可以是一个立即数，或者是放在寄存器cl中的数，对于移位指令只允许以特定的寄存器cl作为操作数，其他寄存器不行。</li>
+<li>对于寄存器cl的长度为8，原则上移位量的编码范围可达255，实际上，对于w位的操作数进行移位操作，移位量是由寄存器cl的低m位来决定。<ul>
+<li>对于指令salb，目前的操作数是8位，移位量由cl的低3位来决定。</li>
+<li>对于指令salw，移位量由cl的低4位来决定。</li>
+<li>双字对应的是低5位，四字对应的是低6位。</li>
+</ul>
+</li>
+</ul>
+<h2 id="特殊算术指令："><a href="#特殊算术指令：" class="headerlink" title="特殊算术指令："></a>特殊算术指令：</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/special%20calculate%20operation.png"></p>
+<h2 id="条件码"><a href="#条件码" class="headerlink" title="条件码"></a>条件码</h2><p>ALU除了执行算术和逻辑运算指令外，还会根据该运算的结果去设置条件码寄存器。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20register.png"></p>
+<p>条件码寄存器由CPU来维护，长度是单个比特位，描述了最近执行操作的属性。假如ALU执行两条连续的算术指令，t1时刻条件码寄存器中保存的是指令1的执行结果属性，t2时刻条件码寄存器的内容被下一条指令覆盖。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20register%20structure%20detail.png"></p>
+<ul>
+<li>进位标志，当CPU最近执行的一条指令最高位产生了进位时，CF会被置1，可以用来检查无符号数操作的溢出。</li>
+<li>零标志，当最近操作的结果等于零时，ZF会被置为1.</li>
+<li>符号标志，当最近的操作结果小于零时，SF会被置为1.</li>
+<li>溢出标志，针对有符号数，最近的操作导致正溢出或负溢出时，OF会被置为1。</li>
+</ul>
+<p>以下运算指令都会改变条件码寄存器的内容：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20register%20related%20operation.png"></p>
+<p>对于不同的指令也定义了相应的规则来设置条件码寄存器，例如：</p>
+<ul>
+<li>xor，CF和OF会置为0.</li>
+<li>加1和减1指令，会设置OF和ZF，但不改变CF。</li>
+</ul>
+<p>有两类指令可以设置条件码寄存器：</p>
+<ul>
+<li>cmp指令和sub指令类似，根据两个操作数的差来设置条件码寄存器，但不更新目的寄存器的值。</li>
+<li>test指令和add指令类似，只设置条件码寄存器，不改变目的寄存器的值。</li>
+</ul>
+<p>sete指令根据零标志（ZF）的值对寄存器进行赋值，后缀e是equal的缩写。如果零标志位等于1，sete将寄存器置为1；如果零标志等于0，指令sete将寄存器置为0。</p>
+<p>setl指令，根据符号标志（SF）和溢出标志（OF）的异或结果来判断是否小于，如果小于，将寄存器设置为1，l是less的缩写。</p>
+<p>有符号数的比较判断：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code.png"></p>
+<p>无符号数的比较判断：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20code%20unsigned%20value.png"></p>
+<h2 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/jump%20command.png"></p>
+<p>条件传送指令：</p>
+<p>cmovge是根据条件码的某种组合来进行有条件的传送数据</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/condition%20jump%20command.png"></p>
+<p>为什么基于条件传送的代码会比基于跳转指令的代码效率高呢？</p>
+<p>现代处理器通过流水线来获得高性能。当遇到条件跳转时，处理器会根据分支预测器来猜测每条跳转指令是否执行，当发生错误预测时，会浪费大量的时间，导致程序性能严重下降。</p>
+<p>C语言中提供了三种循环结构，do-while、while和for语句，cmp与跳转指令的组合实现了循环操作。</p>
+<p>在针对一个测试有多种可能的结果时，通常使用switch语句，通过跳转表这种数据结构，使得实现更加高效。</p>
+<p>跳转表即一个长度为可能结果数量的数组，每个元素都是一个指向代码位置的指针。使用跳转表的优点是执行switch语句的时间与case的数量无关，一次跳转即可处理复杂分支的情况。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>在大型软件的构建过程中，需要对复杂功能进行切分，过程提供了一种封装代码的方式，优点：</p>
+<ul>
+<li>可以隐藏某个行为的具体表现。</li>
+<li>提供清晰简洁的接口定义。</li>
+</ul>
+<h3 id="运行时栈"><a href="#运行时栈" class="headerlink" title="运行时栈"></a>运行时栈</h3><p>程序的运行时内存分布中，栈为函数调用提供了后进先出的内存管理机制。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/stack.png"></p>
+<p>栈帧：当函数执行所要的存储空间超出寄存器能够存放的大小时，就会借助栈上的存储空间，这部分空间即栈帧。</p>
+<p>用于传递参数的寄存器：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/register%20for%20param%20tranfer.png"></p>
+<p>如果一个函数的参数数量大于6，超出的部分就要通过栈来传递。要注意：</p>
+<ul>
+<li><p>通过栈来传递参数时，所有数据的大小都是向8的倍数对齐。</p>
+</li>
+<li><p>使用寄存器进行参数传递时，寄存器的使用是有特殊顺序规定的。寄存器的使用取决于传递参数的大小：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/diff%20params%20use%20diff%20registers.png"></p>
+</li>
+</ul>
+<p>当代码中对一个局部变量使用地址运算符时，需要在栈上开辟对应的存储空间。</p>
+<h2 id="数组分配和访问"><a href="#数组分配和访问" class="headerlink" title="数组分配和访问"></a>数组分配和访问</h2><p>在C语言中，允许对指针进行运算，计算结果会根据该指针引用的数据类型进行相应的伸缩。</p>
+<p>指针运算符*可以理解为从该地址处取数据，指针其实就是地址的抽象表述。</p>
+<p>嵌套数组，数组元素的计算公式：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/double%20array%20cal.png"></p>
+<p>假设数组起始地址Xa在寄存器rdi中，索引值i和j分别在寄存器rsi和rdx中，我们可以用图中的汇编代码将A【i】【j】的值复制到寄存器eax中：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/double%20array%20mov.png"></p>
+<h3 id="数据对齐"><a href="#数据对齐" class="headerlink" title="数据对齐"></a>数据对齐</h3><p>对于不同的数据类型，地址对齐的原则是任何k字节的基本对象的地址必须是k的倍数，也就是说对于short类型，起始地址必须是2的倍数；对于占8个字节的数据类型，起始地址必须是8的倍数。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/data%20alignment.png"></p>
+<p>基于上表的规则，编译器可能需要在字段的地址空间分配时插入间隙，以此保证每个结构体的元素都满足对齐的要求。</p>
+<p>与结构体不同，联合体中的所有字段共享同一个存储区域，因此联合体的大小取决于它最大字段的大小。</p>
+<p>联合体的应用情况：</p>
+<ul>
+<li>事先知道两个不同字段的使用是互斥的。</li>
+<li>可以用来访问不同数据类型的位模式，当我们使用简单的强制类型转换，将 double 类型的数据转换成 unsigned long 类型时，除了数据等于0 的情况，二者的二进制位表示差别很大，这时我们可以将这两种类型的变量声明为一个 联合体，这样就是可以以一种类型来存储，以另外一种类型来访问，变量 u 和 d 就具有相同的位表示。 </li>
+</ul>
+<h3 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h3><p>gets函数是C语言标准库中定义的函数，功能是从标准输入读入一行字符串，在遇到回车或者某个错误的情况时停止，gets函数将字符串复制到参数指明的位置，并在字符串结束的位置加上null符号。</p>
+<p>gets函数有一个问题，无法确定是否有足够大的空间来保存整个字符串，长一些字符串可能会导致栈上的其他信息被覆盖。如果空间不够，返回地址以及更多的状态信会被破坏，返回指令会导致程序跳转到一个完全意想不到的地方。</p>
+<p>历史上许多计算机病毒就是利用缓冲区溢出的方式对计算机系统进行攻击的，解决方案例如：</p>
+<ul>
+<li><p>栈随机化：栈的位置在程序每次运行时都有变化。</p>
+</li>
+<li><p>栈破坏检测：编译器会在产生的汇编代码中加入一种栈保护者的机制来检测缓冲区越界，就是在缓冲区与栈保存的状态值之间存储一个特殊值，又被称为金丝雀值。</p>
+<ul>
+<li>金丝雀值是每次程序运行时随机产生的。</li>
+</ul>
+</li>
+<li><p>限制可执行代码区域：处理器的内存保护引入了不可执行位，将读和可执行访问模式分开了。栈可以被标记为可读和可写，但是不可执行。检查页是否可执行由硬件来完成。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/ComputerSystem/avaliable%20area.png"></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-04-19T15:43:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/">Java提供了哪些IO方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/17/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-04-17T05:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/12/16/%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">信息的表示和处理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/">Java基础（2）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">程序的机器级表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91"><span class="toc-number">1.1.</span> <span class="toc-text">程序编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E8%80%85%E4%BF%9D%E5%AD%98%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E8%A2%AB%E8%B0%83%E7%94%A8%E8%80%85%E4%BF%9D%E5%AD%98%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">调用者保存寄存器和被调用者保存寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E5%90%8E%E7%BC%80"><span class="toc-number">1.4.</span> <span class="toc-text">汇编后缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%8E%86%E5%8F%B2"><span class="toc-number">1.5.</span> <span class="toc-text">寄存器历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-number">1.6.</span> <span class="toc-text">指令相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8C%87%E7%A4%BA%E7%AC%A6"><span class="toc-number">1.6.1.</span> <span class="toc-text">操作数指示符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mov%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.2.</span> <span class="toc-text">mov指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%B6%E6%89%A9%E5%B1%95%EF%BC%9A"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">零扩展：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E4%BD%8D%E6%89%A9%E5%B1%95%EF%BC%9A"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">符号位扩展：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push%E5%92%8Cpop%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.3.</span> <span class="toc-text">push和pop指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#leaq%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.4.</span> <span class="toc-text">leaq指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BA%8C%E5%85%83%E6%93%8D%E4%BD%9C"><span class="toc-number">1.7.</span> <span class="toc-text">一元操作和二元操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="toc-number">1.8.</span> <span class="toc-text">移位操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%AE%97%E6%9C%AF%E6%8C%87%E4%BB%A4%EF%BC%9A"><span class="toc-number">1.9.</span> <span class="toc-text">特殊算术指令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%A0%81"><span class="toc-number">1.10.</span> <span class="toc-text">条件码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">1.11.</span> <span class="toc-text">跳转指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">1.12.</span> <span class="toc-text">过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A0%88"><span class="toc-number">1.12.1.</span> <span class="toc-text">运行时栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%88%86%E9%85%8D%E5%92%8C%E8%AE%BF%E9%97%AE"><span class="toc-number">1.13.</span> <span class="toc-text">数组分配和访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90"><span class="toc-number">1.13.1.</span> <span class="toc-text">数据对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="toc-number">1.13.2.</span> <span class="toc-text">缓冲区溢出</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/15/Java%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-04-15T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/15/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/13/%E6%8E%A2%E7%B4%A2%E4%BB%A5%E5%BF%AB%E8%91%97%E7%A7%B0%E7%9A%84Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-04-13T13:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/13/%E6%8E%A2%E7%B4%A2%E4%BB%A5%E5%BF%AB%E8%91%97%E7%A7%B0%E7%9A%84Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">探索以快著称的Redis的数据结构</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/Redis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-04-12T15:15:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/10/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%B9%8B%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-04-09T22:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/10/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%B9%8B%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/">Java类加载之双亲委派模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/08/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-04-08T15:00:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/08/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型和引用数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/08/Java%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2021-04-08T14:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/08/Java%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B/">Java集合简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2021-04-06T14:35:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/">如何高效阅读源码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/05/new%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="archive-article-date">
-  	<time datetime="2021-04-05T15:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/05/new%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new一个对象的过程中发生了什么</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -642,8 +617,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

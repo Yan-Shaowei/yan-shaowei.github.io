@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>如何高效阅读源码 | Yan Shaowei`s blog</title>
+  <title>设计模式总结 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一篇根据知乎live《如何阅读源码》（作者是易哥）做的整理和读书笔记，和大家分享下，共同努力！ 阅读源码的好处 加深对项目实现原理的理解与认识。  熟悉各种编程知识的使用。  全面提升自己的能力。   前期准备工作 了解项目的背景，项目要解决的问题，发展过程等。这是对设计需求的了解，每一行代码出现的原因。  了解项目的功能，详细了解每个功能的使用方法。自己思考怎么去实现它。  合适的开发工具，">
+  <meta name="description" content="设计模式创建型创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模式 作用：用来创建全局唯一的对象。 实现方式：饿汉式、懒汉式、双重检测、静态内部类、枚举。 解决的问题：大资源加载等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何高效阅读源码">
-<meta property="og:url" content="http://example.com/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/index.html">
+<meta property="og:title" content="设计模式总结">
+<meta property="og:url" content="http://example.com/2022/01/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
-<meta property="og:description" content="这是一篇根据知乎live《如何阅读源码》（作者是易哥）做的整理和读书笔记，和大家分享下，共同努力！ 阅读源码的好处 加深对项目实现原理的理解与认识。  熟悉各种编程知识的使用。  全面提升自己的能力。   前期准备工作 了解项目的背景，项目要解决的问题，发展过程等。这是对设计需求的了解，每一行代码出现的原因。  了解项目的功能，详细了解每个功能的使用方法。自己思考怎么去实现它。  合适的开发工具，">
+<meta property="og:description" content="设计模式创建型创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模式 作用：用来创建全局唯一的对象。 实现方式：饿汉式、懒汉式、双重检测、静态内部类、枚举。 解决的问题：大资源加载等。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-06T14:35:50.000Z">
-<meta property="article:modified_time" content="2021-04-09T21:38:07.607Z">
+<meta property="article:published_time" content="2022-01-06T07:50:48.000Z">
+<meta property="article:modified_time" content="2022-01-06T07:50:29.635Z">
 <meta property="article:author" content="Yan Shaowei">
-<meta property="article:tag" content="实践总结">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
@@ -221,92 +221,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-如何高效阅读源码" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-设计模式总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      如何高效阅读源码
+      设计模式总结
     </h1>
   
 
         
-        <a href="/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2021-04-06T14:35:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-06</time>
+        <a href="/2022/01/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2022-01-06T07:50:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是一篇根据知乎live《如何阅读源码》（作者是易哥）做的整理和读书笔记，和大家分享下，共同努力！</p>
-<h1 id="阅读源码的好处"><a href="#阅读源码的好处" class="headerlink" title="阅读源码的好处"></a>阅读源码的好处</h1><ul>
-<li><p>加深对项目实现原理的理解与认识。</p>
-</li>
-<li><p>熟悉各种编程知识的使用。</p>
-</li>
-<li><p>全面提升自己的能力。</p>
-</li>
-</ul>
-<h1 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h1><ul>
-<li><p>了解项目的背景，项目要解决的问题，发展过程等。这是对设计需求的了解，每一行代码出现的原因。</p>
-</li>
-<li><p>了解项目的功能，详细了解每个功能的使用方法。自己思考怎么去实现它。</p>
-</li>
-<li><p>合适的开发工具，支持高亮、跳转以及断点调试。</p>
-</li>
-</ul>
- <span id="more"></span>
-
-<h1 id="选择合适的项目"><a href="#选择合适的项目" class="headerlink" title="选择合适的项目"></a>选择合适的项目</h1><ul>
-<li><p>规模适中，难度不要太大。</p>
-</li>
-<li><p>有自己感兴趣的涉及面。</p>
-</li>
-<li><p>成熟度高，代码正确，有规范。</p>
-</li>
-<li><p>有应用广度，通用的有名的应用。</p>
-</li>
-</ul>
-<h1 id="阅读源码的方法和技巧"><a href="#阅读源码的方法和技巧" class="headerlink" title="阅读源码的方法和技巧"></a>阅读源码的方法和技巧</h1><h2 id="源码概览阶段"><a href="#源码概览阶段" class="headerlink" title="源码概览阶段"></a>源码概览阶段</h2><p>这个阶段是快速的概览源码，对代码进行断点调式。</p>
-<p>需要注意：</p>
+        <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h2><p>创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。</p>
 <ul>
-<li><p>抓大放小，不要过于关注细节</p>
-</li>
-<li><p>把握脉络</p>
-</li>
-</ul>
-<p>概览后，进行总结，总结类包的功能，划分功能块，理清楚功能块的关系。</p>
-<h2 id="详细阅读阶段"><a href="#详细阅读阶段" class="headerlink" title="详细阅读阶段"></a>详细阅读阶段</h2><ul>
-<li>模块分析：通过模块名称以及调用关系等，分析各个模块的功能。</li>
-<li>模块归类：将模块分类，分类可以仅可能细，单独对每个类来进行学习。</li>
-<li>自底向上：建议先看桩模块，再看驱动模块。也可以先看相对简单的模块，再看复杂的模块。</li>
-<li>合理猜测：可以猜测一个功能的实现方式，在源码阅读的过程中，修正和完善我们的猜测。</li>
-<li>类比阅读：<ul>
-<li>可以选择最为复杂的分支阅读，复杂的理解了，简单的分支就很好理解了。</li>
-<li>可以选择简单的分支阅读，一步一步加深了解，最后理解复杂的分支。</li>
-<li>因此对于重要/核心的功能，可以选择复杂的分支来阅读。</li>
-<li>对于次要的功能，可以选择简单的分支来阅读。</li>
+<li>单例模式<ul>
+<li>作用：用来创建全局唯一的对象。</li>
+<li>实现方式：饿汉式、懒汉式、双重检测、静态内部类、枚举。</li>
+<li>解决的问题：大资源加载等。</li>
 </ul>
 </li>
-<li>善于汇总：通过各种工具，类图、伪代码、时序图、结构图来进行汇总，理清思路下，寻找规律。</li>
-<li>网格阅读：对于横跨多个模块的代码，要以功能角度横向的来阅读代码。对于一个模块的代码，一步一步的去理解子模块、类、每个方法、每个属性，这是一个自上向下，逐步深入的过程。一横一纵，这样就形成了网格，可以保证对源码的理解是透彻的，对功能的理解是连贯的。</li>
 </ul>
-<h1 id="值得阅读源码的优秀项目"><a href="#值得阅读源码的优秀项目" class="headerlink" title="值得阅读源码的优秀项目"></a>值得阅读源码的优秀项目</h1><ul>
-<li><p>Guava: 谷歌开源的java工具库。</p>
-</li>
-<li><p>Tomcat：免费的轻量的web应用服务器。</p>
-</li>
-<li><p>Redis：缓存数据库。</p>
-</li>
-<li><p>Dubbo：高性能服务框架。</p>
-</li>
-<li><p>React：一个用于构建用户界面的JavaScript 库。</p>
-</li>
-</ul>
+<span id="more"></span>
 
+<ul>
+<li>工厂模式（工厂方法和抽象工厂）<ul>
+<li>作用：创建类型相关但不同的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象。</li>
+<li>分类：简单工厂、工厂方法、抽象工厂。当每个对象创建逻辑都很简单时，建议使用简单工厂模式；当创建逻辑较为复杂时，建议使用工厂方法模式。</li>
+<li>解决的问题：封装变化、代码复用、隔离复杂性、控制复杂度。</li>
+</ul>
+</li>
+<li>建造者模式<ul>
+<li>作用：创建复杂对象，可以通过设置不同的可选参数，创建不同的对象。</li>
+<li>使用场景：创建对象有很多必填属性，属性之间有一定的依赖或者约束关系，以及创建不可变对象时可以考虑使用。</li>
+</ul>
+</li>
+<li>原型模式<ul>
+<li>作用：利用已有对象进行复制的方式，来创建新对象。</li>
+<li>实现方式：深拷贝和浅拷贝。浅拷贝只复制对象中基本数据类型数据和引用对象的内存地址。深拷贝得到的是一份独立的对象。</li>
+<li>解决的问题：节省创建时间。</li>
+</ul>
+</li>
+</ul>
+<h2 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h2><p>结构型模式主要总结了一些类或对象组合在一起的经典结构，这些结构可以解决特定应用场景的问题。</p>
+<ul>
+<li>桥接模式<ul>
+<li>作用：组合优于继承的设计原则</li>
+</ul>
+</li>
+<li>装饰器模式<ul>
+<li>作用：继承关系过于复杂时，通过组合替代继承，给原始类增强功能。可以给原始类嵌套使用多个装饰器。装饰器类需要跟原始类继承相同的抽象类或接口。</li>
+</ul>
+</li>
+<li>代理模式<ul>
+<li>作用：不用修改原始类接口，为原始类定义一个代理类，来控制访问。</li>
+<li>使用场景：开发一些非功能性需求，如监控、统计、鉴权、限流、事务、幂等、日志。</li>
+</ul>
+</li>
+<li>适配器模式<ul>
+<li>作用：将不兼容的接口转换为可兼容的接口。</li>
+<li>实现方式：类适配器和对象适配器。</li>
+<li>使用场景：<ul>
+<li>封装有缺陷的接口设计</li>
+<li>统一多个类的接口设计</li>
+<li>替换依赖的外部系统</li>
+<li>兼容老版本接口</li>
+<li>适配不同格式的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>门面模式<ul>
+<li>作用：通过封装细粒度的接口，提供组合各个细粒度接口的高层次接口。</li>
+<li>解决的问题：提高接口易用性，解决性能、分布式事务等问题。</li>
+</ul>
+</li>
+<li>组合模式<ul>
+<li>作用：处理树形结构数据</li>
+</ul>
+</li>
+<li>享元模式<ul>
+<li>作用：复用对象，节省内存。（享元对象是不可变对象）</li>
+<li>解决的问题：系统中存在大量重复对象时，利用享元模式，将对象设计成享元，在内存中只保留一份实例，供多处代码引用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h2><p>行为型设计模式主要解决的是类或对象之间的交互问题。</p>
+<ul>
+<li>策略模式<ul>
+<li>作用：定义一组算法类，将每个算法封装起来，让它们可以互相替换。</li>
+<li>解决的问题：可以使算法的变化独立于使用它们的客户端。可以解耦策略的定义、创建、使用。可以用来避免冗长的分支判断。</li>
+</ul>
+</li>
+<li>观察者模式<ul>
+<li>作用：将观察者和被观察者代码解耦。</li>
+<li>实现方式：<ul>
+<li>同步阻塞：代码解耦</li>
+<li>异步非阻塞：提高代码执行效率</li>
+<li>进程内</li>
+<li>跨进程：通过消息队列来实现</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模板模式<ul>
+<li>作用：在一个方法中定义一个算法骨架，将某些步骤推迟到子类中实现。可以让子类在不改变算法整体结构的情况下，重新定义算法中的某些步骤。</li>
+<li>解决的问题<ul>
+<li>复用：子类可以复用父类中提供的模板方法的代码</li>
+<li>扩展：框架通过模板模式提供功能扩展点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>职责链模式<ul>
+<li>作用：多个处理器依次处理同一个请求，形成一个链条，每个处理器各自负责各自的处理职责。</li>
+<li>解决的问题：让框架使用者不修改框架源码的情况下，实现过滤器、拦截器的功能。</li>
+</ul>
+</li>
+<li>迭代器模式<ul>
+<li>作用：遍历集合对象。</li>
+<li>解决的问题：<ul>
+<li>封装集合内部的复杂数据结构，直接使用。</li>
+<li>将集合对象的遍历操作从集合类中拆分出来，职责更加单一。</li>
+<li>让添加新遍历算法更容易，更符合开闭原则。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>状态模式<ul>
+<li>作用：实现状态机，常用在游戏、工作流引擎等系统开发中。</li>
+<li>实现方式：<ul>
+<li>分支逻辑法，对于简单的状态机首选。</li>
+<li>查表法，通过二维数组表示状态转移图，提高代码可读性和可维护性。</li>
+<li>状态模式，对于状态不多，但事件触发执行的动作包含的业务逻辑比较复杂的状态机首选。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>访问者模式<ul>
+<li>作用：允许一个或者多个操作应用到一组对象上。</li>
+<li>解决的问题：解耦操作和对象本身。</li>
+</ul>
+</li>
+<li>备忘录模式<ul>
+<li>作用：捕获一个对象的内部状态，在该对象之外保存这个状态，以便之后恢复对象为先前的状态。</li>
+<li>解决的问题：防丢失、撤销、恢复等。</li>
+</ul>
+</li>
+<li>命令模式<ul>
+<li>作用：将函数封装成对象。</li>
+<li>解决的问题：控制命令的执行。如异步、延迟、排队执行命令、撤销重做命令、存储命令、给命令记录日志等。</li>
+</ul>
+</li>
+<li>解释器模式<ul>
+<li>作用：为某个语言定义它的语法，并定义一个解释器用来处理这个语法。</li>
+</ul>
+</li>
+<li>中介模式<ul>
+<li>作用：引入中介这个中间层，将一组对象之间的交互关系从多对多转换为一对多。</li>
+</ul>
+</li>
+</ul>
+<h1 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h1><h2 id="SOLID原则"><a href="#SOLID原则" class="headerlink" title="SOLID原则"></a>SOLID原则</h2><ul>
+<li>SRP单一职责</li>
+<li>OCP开闭原则</li>
+<li>LSP里氏替换原则</li>
+<li>ISP接口隔离原则</li>
+<li>DIP依赖倒置原则</li>
+</ul>
+<h2 id="DRY原则"><a href="#DRY原则" class="headerlink" title="DRY原则"></a>DRY原则</h2><h2 id="KISS原则"><a href="#KISS原则" class="headerlink" title="KISS原则"></a>KISS原则</h2><h2 id="YAGNI原则"><a href="#YAGNI原则" class="headerlink" title="YAGNI原则"></a>YAGNI原则</h2><h2 id="LOD法则"><a href="#LOD法则" class="headerlink" title="LOD法则"></a>LOD法则</h2>
       
 
       
@@ -319,7 +410,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践总结</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -375,7 +466,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -389,18 +480,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/08/Java%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java集合简介
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/05/new%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">new一个对象的过程中发生了什么</div>
+    <a href="/2022/01/06/%E6%95%B0%E7%BB%84%E4%B8%8E%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数组与链表</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -427,7 +509,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">1.</span> <span class="toc-text">阅读源码的好处</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">前期准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.</span> <span class="toc-text">选择合适的项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%80%E5%B7%A7"><span class="toc-number">4.</span> <span class="toc-text">阅读源码的方法和技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E6%A6%82%E8%A7%88%E9%98%B6%E6%AE%B5"><span class="toc-number">4.1.</span> <span class="toc-text">源码概览阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E9%98%85%E8%AF%BB%E9%98%B6%E6%AE%B5"><span class="toc-number">4.2.</span> <span class="toc-text">详细阅读阶段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E4%BC%98%E7%A7%80%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.</span> <span class="toc-text">值得阅读源码的优秀项目</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">创建型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">结构型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">行为型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SOLID%E5%8E%9F%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">SOLID原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DRY%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.</span> <span class="toc-text">DRY原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KISS%E5%8E%9F%E5%88%99"><span class="toc-number">2.3.</span> <span class="toc-text">KISS原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#YAGNI%E5%8E%9F%E5%88%99"><span class="toc-number">2.4.</span> <span class="toc-text">YAGNI原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOD%E6%B3%95%E5%88%99"><span class="toc-number">2.5.</span> <span class="toc-text">LOD法则</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

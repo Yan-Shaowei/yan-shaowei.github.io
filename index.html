@@ -224,6 +224,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Go语言常用集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/11/Go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88/">Go语言常用集合</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/11/Go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88/" class="archive-article-date">
+  	<time datetime="2022-01-11T02:45:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Go语言常用集合"><a href="#Go语言常用集合" class="headerlink" title="Go语言常用集合"></a>Go语言常用集合</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="数组的声明"><a href="#数组的声明" class="headerlink" title="数组的声明"></a>数组的声明</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a[<span class="number">3</span>]<span class="keyword">int</span> <span class="comment">//声明并初始化为默认零值</span></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">b := [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; <span class="comment">//声明同时初始化</span></span><br><span class="line">c := [<span class="number">2</span>][<span class="number">2</span>]<span class="keyword">int</span>&#123;&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">3</span>,<span class="number">4</span>&#125;&#125; <span class="comment">//多维数组初始化</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组的遍历"><a href="#数组的遍历" class="headerlink" title="数组的遍历"></a>数组的遍历</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line"><span class="keyword">for</span> idx, e := <span class="keyword">range</span> arr&#123;</span><br><span class="line">	... <span class="comment">// idx 为索引，e为对应的数组元素，当索引不需要时，可以使用_替代</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/11/Go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Go语言入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -928,92 +1004,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/07/04/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-项目管理简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/02/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B/">项目管理简介</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/02/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2021-06-02T15:00:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="项目经理的职责"><a href="#项目经理的职责" class="headerlink" title="项目经理的职责"></a>项目经理的职责</h1><p>合理利用公司资源组织设计、开发、测试等各种资源完成项目的高质量交付，并保证项目的盈利。</p>
-<h2 id="重要点"><a href="#重要点" class="headerlink" title="重要点"></a>重要点</h2><ul>
-<li>合理利用公司资源：资源是有限的，作为项目经历需要在资源和事情的总量、难度之间找到一个匹配的值。既不能浪费人力，也不能人手不够事情做不完。</li>
-<li>利用各种资源：项目经历需要想方设法获取资源，而不是坐等公司来解决问题。</li>
-<li>高质量、盈利：项目盈利是一方面，质量是更长远的一方面，所以项目的质量和盈利是需要兼顾的。</li>
-</ul>
-<p>除此之外，项目经理上要对得起公司，下要对得起跟着自己做事情的兄弟，要让跟着自己做事情的人得到成长和锻炼。比如：</p>
-<ul>
-<li>给团队成员技术指导</li>
-<li>合理的安排开发计划</li>
-<li>每次迭代后和大家总结</li>
-<li>及时给予激励等。</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">项目管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/02/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B/">展开全文 >></a>
         </p>
       
 

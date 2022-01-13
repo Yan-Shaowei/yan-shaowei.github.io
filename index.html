@@ -224,6 +224,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-限流框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/13/%E9%99%90%E6%B5%81%E6%A1%86%E6%9E%B6/">限流框架</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/13/%E9%99%90%E6%B5%81%E6%A1%86%E6%9E%B6/" class="archive-article-date">
+  	<time datetime="2022-01-13T08:28:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="限流框架"><a href="#限流框架" class="headerlink" title="限流框架"></a>限流框架</h1><p>接口限流功能：限制每个调用方对接口请求的频率，当超过预先设定的访问频率，就触发限流熔断。</p>
+<h2 id="功能性需求"><a href="#功能性需求" class="headerlink" title="功能性需求"></a>功能性需求</h2><ul>
+<li>配置限流规则</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">configs:</span><br><span class="line">- appId: app-<span class="number">1</span></span><br><span class="line">  limits:</span><br><span class="line">  - api: /v1/user</span><br><span class="line">    limit: <span class="number">100</span></span><br><span class="line">    unit：<span class="number">60</span></span><br><span class="line">  - api: /v1/order</span><br><span class="line">    limit: <span class="number">50</span></span><br><span class="line">- appId: app-<span class="number">2</span></span><br><span class="line">  limits:</span><br><span class="line">  - api: /v1/user</span><br><span class="line">    limit: <span class="number">50</span></span><br><span class="line">  - api: /v1/order</span><br><span class="line">    limit: <span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提供编程接口验证请求是否被限流</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String appId = <span class="string">&quot;app-1&quot;</span>; <span class="comment">// 调用方APP-ID</span></span><br><span class="line">String url = <span class="string">&quot;http://www.eudemon.com/v1/user/12345&quot;</span>;<span class="comment">// 请求url</span></span><br><span class="line">RateLimiter ratelimiter = <span class="keyword">new</span> RateLimiter();</span><br><span class="line"><span class="keyword">boolean</span> passed = ratelimiter.limit(appId, url);</span><br><span class="line"><span class="keyword">if</span> (passed) &#123;</span><br><span class="line">  <span class="comment">// 放行接口请求，继续后续的处理。</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 接口请求被限流。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="非功能性需求"><a href="#非功能性需求" class="headerlink" title="非功能性需求"></a>非功能性需求</h2><ul>
+<li>易用性：可以集成到spring框架中，提供不同的算法，使用简单。</li>
+<li>扩展性、灵活性：灵活的扩展各种限流算法，支持不同格式、数据源的限流规则的配置方式。</li>
+<li>性能：低延迟、减少对接口本身响应时间的影响。</li>
+<li>容错性：即使限流逻辑无法运行，业务接口也要可以正常服务。</li>
+</ul>
+<h1 id="限流算法"><a href="#限流算法" class="headerlink" title="限流算法"></a>限流算法</h1><h2 id="固定时间窗口限流算法"><a href="#固定时间窗口限流算法" class="headerlink" title="固定时间窗口限流算法"></a>固定时间窗口限流算法</h2><p>选定一个起始时间，之后每来一个接口请求，都给计数器（记录当前时间窗口内的访问次数）加一，如果在当前时间窗口内，根据限流规则，累加访问次数超过限流值，就触发限流熔断，拒接接口请求。当进入下一个时间窗口之后，计数器清零重新计数。</p>
+<p>优点：简单。</p>
+<p>缺点：过于粗略，无法应对两个时间窗口临界时间内的突发流量。</p>
+<h2 id="滑动时间窗口限流算法"><a href="#滑动时间窗口限流算法" class="headerlink" title="滑动时间窗口限流算法"></a>滑动时间窗口限流算法</h2><h2 id="令牌桶限流算法"><a href="#令牌桶限流算法" class="headerlink" title="令牌桶限流算法"></a>令牌桶限流算法</h2><h2 id="漏桶限流算法"><a href="#漏桶限流算法" class="headerlink" title="漏桶限流算法"></a>漏桶限流算法</h2><h1 id="限流模式"><a href="#限流模式" class="headerlink" title="限流模式"></a>限流模式</h1><h2 id="单机限流"><a href="#单机限流" class="headerlink" title="单机限流"></a>单机限流</h2><p>针对一个服务实例来进行限流，只需要在这个实例中维护自己的接口请求计数器。</p>
+<h2 id="分布式限流"><a href="#分布式限流" class="headerlink" title="分布式限流"></a>分布式限流</h2><p>针对某个服务的多个实例的总访问频率进行限制，需要使用集中管理计数器，这样才能做到多个实例对同一个计数器累加计数，以便实现对多个实例总访问频率的限制。</p>
+<p>如果使用Redis来进行集中管理计数，网络通信成本较高。高容错、低延迟设计的主要场景是基于Redis实现的分布式限流。</p>
+<p>对于Redis的各种异常情况，捕获并封装为统一的异常，向上抛出或者吞掉就可以了。</p>
+<p>对于Redis访问超时，会严重影响接口的响应时间，导致接口请求超时。因此在访问Redis时，需要设置合理的超时时间，一旦超时就判定为限流失效，继续执行接口请求。访问Redis超时时间的设置不能太大也不能太小，太大会影响接口的响应时间，太小会导致太多的限流失效。</p>
+<p>我们可以通过压测或者线上监控，获取到Redis访问时间分布情况，再结合接口可以容忍的限流延迟时间，权衡设置合理的Redis超时时间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践总结</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/13/%E9%99%90%E6%B5%81%E6%A1%86%E6%9E%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Go语言常用集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -922,88 +1021,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/12/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-错误的集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/04/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88/">错误的集合</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/04/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2021-07-04T15:28:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>集合 s 包含从 1 到 n 的整数。不幸的是，因为数据错误，导致集合里面某一个数字复制了成了集合里面的另外一个数字的值，导致集合 丢失了一个数字 并且 有一个数字重复 。</p>
-<p>给定一个数组 nums 代表了集合 S 发生错误后的结果。</p>
-<p>请你找出重复出现的整数，再找到丢失的整数，将它们以数组的形式返回。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例 <span class="number">1</span>：</span><br><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">输出：[<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例 2：</span><br><span class="line">输入：nums = [1,1]</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
-
-<p>提示：</p>
-<p>2 &lt;= nums.length &lt;= 104<br>1 &lt;= nums[i] &lt;= 104</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/04/%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88/">展开全文 >></a>
         </p>
       
 

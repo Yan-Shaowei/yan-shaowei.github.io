@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022 | Yan Shaowei`s blog</title>
+  <title>Go函数及接口 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yan Shaowei&#96;s blog">
-<meta property="og:url" content="http://example.com/archives/2022/index.html">
+  <meta name="description" content="Go函数 可以有多个返回值 所有参数都是值传递 函数可以作为变量的值 函数可以作为参数和返回值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go函数及接口">
+<meta property="og:url" content="http://example.com/2022/01/14/Go%E5%87%BD%E6%95%B0%E5%8F%8A%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
+<meta property="og:description" content="Go函数 可以有多个返回值 所有参数都是值传递 函数可以作为变量的值 函数可以作为参数和返回值">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/Go/excute%20order.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/Go/interface%20param.png">
+<meta property="article:published_time" content="2022-01-14T08:26:48.000Z">
+<meta property="article:modified_time" content="2022-01-14T08:26:44.780Z">
 <meta property="article:author" content="Yan Shaowei">
+<meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/Go/excute%20order.png">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
   
@@ -222,36 +230,106 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Go函数及接口" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Go函数及接口
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/14/Go%E5%87%BD%E6%95%B0%E5%8F%8A%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
+
+        
+        <a href="/2022/01/14/Go%E5%87%BD%E6%95%B0%E5%8F%8A%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
   	<time datetime="2022-01-14T08:26:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/14/Go%E5%87%BD%E6%95%B0%E5%8F%8A%E6%8E%A5%E5%8F%A3/">Go函数及接口</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Go函数"><a href="#Go函数" class="headerlink" title="Go函数"></a>Go函数</h1><ul>
+<li>可以有多个返回值</li>
+<li>所有参数都是值传递</li>
+<li>函数可以作为变量的值</li>
+<li>函数可以作为参数和返回值</li>
+</ul>
+<span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestVarParam</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	sum := Sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">	t.Log(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sum</span><span class="params">(ops ...<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	ret := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> _, op := <span class="keyword">range</span> ops &#123;</span><br><span class="line">		ret = ret + op</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="defer函数"><a href="#defer函数" class="headerlink" title="defer函数"></a>defer函数</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestDefer</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		t.Log(<span class="string">&quot;clear resources&quot;</span>)</span><br><span class="line">	&#125;()</span><br><span class="line">	t.Log(<span class="string">&quot;Started&quot;</span>)</span><br><span class="line">	<span class="built_in">panic</span>(<span class="string">&quot;Fatal error&quot;</span>) <span class="comment">//panic 不可修复的异常中断，defer函数依然会执行</span></span><br><span class="line">    <span class="comment">// defer「延缓」碰到这个函数，先延缓不动。在该函数最后返回前，才执行defer声明的函数, 一般用来释放执行函数后的资源和锁</span></span><br><span class="line"><span class="comment">// panic「惊恐」让人感到惊恐的错误 ⚠️：即便出现严重错误，defer 依然可以执行，用于释放资源</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Defer 被用来确保一个函数调用在程序执行结束前执行。同样用来执行一些清理工作。defer 用在像其他语言中的 ensure 和 finally用到的地方。</li>
+<li>关键字 defer 允许我们推迟到函数返回之前（或任意位置执行 return 语句之后）一刻才执行某个语句或函数（为什么要在返回之后才执行这些语句？因为 return 语句同样可以包含一些操作，而不是单纯地返回某个值）。</li>
+<li>推迟的函数调用会被压入一个栈中。当外层函数返回时，被推迟的函数会按照后进先出的顺序调用。</li>
+</ol>
+<h2 id="init函数"><a href="#init函数" class="headerlink" title="init函数"></a>init函数</h2><p>golang里面有两个保留的函数：</p>
+<ul>
+<li>init函数（可以用在所有的package）</li>
+<li>main函数（只能应用于package main）</li>
+<li>这两个函数在定义时不能有任何的参数和返回值</li>
+</ul>
+<p>Go程序会自动调用init()和main()，不能调用这两个函数</p>
+<p>单个包中代码执行顺序如下：</p>
+<blockquote>
+<p>main包 -&gt; 常量 -&gt; 全局变量 -&gt; init函数 -&gt; main函数 -&gt; Exit</p>
+</blockquote>
+<p>多个包中代码执行顺序：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/Go/excute%20order.png"></p>
+<p>init函数的作用：处理当前文件的初始化操作</p>
+<h1 id="Go接口"><a href="#Go接口" class="headerlink" title="Go接口"></a>Go接口</h1><ul>
+<li>接口为非侵入性，实现不依赖于接口定义</li>
+<li>接口的定义可以包含在接口使用者的包内</li>
+</ul>
+<h2 id="接口变量"><a href="#接口变量" class="headerlink" title="接口变量"></a>接口变量</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/Go/interface%20param.png"></p>
+<h2 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h2><ul>
+<li>type IntConvertionFn func(n int) int</li>
+<li>type MyPoint int</li>
+</ul>
+<h1 id="Go面向对象编程"><a href="#Go面向对象编程" class="headerlink" title="Go面向对象编程"></a>Go面向对象编程</h1><h2 id="结构体定义"><a href="#结构体定义" class="headerlink" title="结构体定义"></a>结构体定义</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Employee <span class="keyword">struct</span>&#123;</span><br><span class="line">	Id <span class="keyword">string</span></span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实例创建及初始化"><a href="#实例创建及初始化" class="headerlink" title="实例创建及初始化"></a>实例创建及初始化</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">e := Employee&#123;<span class="string">&quot;0&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="number">20</span>&#125;</span><br><span class="line">	e1 := Employee&#123;Name: <span class="string">&quot;Mike&quot;</span>, Age: <span class="number">10</span>&#125;</span><br><span class="line">	e2 := <span class="built_in">new</span>(Employee) <span class="comment">//这里返回的是引用/指针，相当于e:= &amp;Employee&#123;&#125;</span></span><br><span class="line">	e2.Age = <span class="number">22</span> <span class="comment">//通过实例的指针访问成员不需要使用-&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="行为定义"><a href="#行为定义" class="headerlink" title="行为定义"></a>行为定义</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种方式实例对应方法被调用时，实例的成员会进行值复制</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e Employee)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;Id:%s-Name:%s-Age:%d&quot;</span>, e.Id, e.Name, e.Age)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为了避免内存拷贝，建议使用这种方式</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *Employee)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;Id:%s-Name:%s-Age:%d&quot;</span>, e.Id, e.Name, e.Age)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><ul>
+<li>在Go语言中，通过首字母大小写来控制变量、函数、方法、类型的公私有</li>
+<li>首字母小写，表示私有，仅在当前包中可以使用</li>
+<li>首字母大写，表示共有，其它包中也可以使用</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span>&#123;</span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">	age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(p *person)</span><span class="title">SetAge</span><span class="params">(age <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> age&lt;<span class="number">0</span>&#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;年龄不能为负&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	p.age = age</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li>Go语言坚持”组合优于继承“的原则，Go语言中继承是利用组合实现的（匿名结构体属性）</li>
+<li>在继承结构中出现重名情况，采用就近原则</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">	age  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">	Person</span><br><span class="line">	score <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Person)</span> <span class="title">say</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Print(<span class="string">&quot;说话啦&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestOopPractice</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	s := Student&#123;</span><br><span class="line">		Person: Person&#123;<span class="string">&quot;小王&quot;</span>, <span class="number">10</span>&#125;,</span><br><span class="line">		score:  <span class="number">100</span>&#125;</span><br><span class="line">	t.Log(s, s.age)</span><br><span class="line">	s.say()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><ul>
+<li>Go语言多态通过接口实现</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Animal <span class="keyword">interface</span> &#123;</span><br><span class="line">	Eat()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Dog <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">	age  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d Dog)</span> <span class="title">Eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(d.name + <span class="string">&quot;正在吃东西&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d *Dog)</span> <span class="title">sit</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(d.name + <span class="string">&quot;坐下来&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestPolymorphism</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a Animal</span><br><span class="line">	a = Dog&#123;<span class="string">&quot;小王&quot;</span>, <span class="number">5</span>&#125;</span><br><span class="line">	a.Eat()</span><br><span class="line">	<span class="keyword">if</span> dog, ok := a.(Dog); ok &#123;</span><br><span class="line">		dog.sit()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h3><ul>
+<li>ok-idiom模式</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//value为interface的值，Type为推断的类型</span></span><br><span class="line">value, ok := x.(Type)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>switch模式</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> v：= x.(<span class="keyword">type</span>)&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="keyword">int</span>:</span><br><span class="line">		...</span><br><span class="line">	<span class="keyword">case</span> <span class="literal">nil</span>:</span><br><span class="line">		...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -263,247 +341,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/14/Go%E5%87%BD%E6%95%B0%E5%8F%8A%E6%8E%A5%E5%8F%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/13/%E9%99%90%E6%B5%81%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2022-01-13T08:28:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/13/%E9%99%90%E6%B5%81%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">限流框架</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/13/%E9%99%90%E6%B5%81%E6%A1%86%E6%9E%B6/">限流框架</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Go%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">Go函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">可变参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#defer%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">defer函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#init%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">init函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Go%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">Go接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">接口变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">自定义类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">Go面向对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text">结构体定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%9B%E5%BB%BA%E5%8F%8A%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">实例创建及初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%AE%9A%E4%B9%89"><span class="toc-number">3.3.</span> <span class="toc-text">行为定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-number">3.4.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">3.5.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-number">3.6.</span> <span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD"><span class="toc-number">3.6.1.</span> <span class="toc-text">类型推断</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/11/Go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2022-01-11T02:45:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-11</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/11/Go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88/">Go语言常用集合</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/10/Go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2022-01-10T05:16:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/10/Go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/">Go语言入门</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-01-06T07:50:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/">设计模式总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/06/%E6%95%B0%E7%BB%84%E4%B8%8E%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2022-01-06T05:16:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/06/%E6%95%B0%E7%BB%84%E4%B8%8E%E9%93%BE%E8%A1%A8/">数组与链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2022-01-04T07:55:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/">数据结构与算法基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -530,8 +480,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

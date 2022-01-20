@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>设计模式总结 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式设计模式要干的事情就是解耦，利用更好的代码结构将一大坨代码拆分成职责更单一的小类，让其满足高内聚低耦合等特性。而解耦的主要目的是应对代码的复杂性，设计模式就是为了解决复杂代码问题而产生的。 创建型模式将创建和使用代码解耦。 结构型模式将不同的功能代码解耦。 行为型模式将不同的行为代码解耦。 创建型创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模">
+  <meta name="description" content="代码常用评价标准 可维护性：在不破坏原有代码设计、不引入新bug的情况下，快速地修改或者添加代码。 可读性 可扩展性：在不修改或少量修改的情况下，添加新功能 灵活性 简洁性 可复用性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式总结">
 <meta property="og:url" content="http://example.com/2022/01/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
-<meta property="og:description" content="设计模式设计模式要干的事情就是解耦，利用更好的代码结构将一大坨代码拆分成职责更单一的小类，让其满足高内聚低耦合等特性。而解耦的主要目的是应对代码的复杂性，设计模式就是为了解决复杂代码问题而产生的。 创建型模式将创建和使用代码解耦。 结构型模式将不同的功能代码解耦。 行为型模式将不同的行为代码解耦。 创建型创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模">
+<meta property="og:description" content="代码常用评价标准 可维护性：在不破坏原有代码设计、不引入新bug的情况下，快速地修改或者添加代码。 可读性 可扩展性：在不修改或少量修改的情况下，添加新功能 灵活性 简洁性 可复用性">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-06T07:50:48.000Z">
-<meta property="article:modified_time" content="2022-01-06T08:16:09.534Z">
+<meta property="article:modified_time" content="2022-01-20T01:37:00.105Z">
 <meta property="article:author" content="Yan Shaowei">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -247,34 +247,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>设计模式要干的事情就是解耦，利用更好的代码结构将一大坨代码拆分成职责更单一的小类，让其满足高内聚低耦合等特性。而解耦的主要目的是应对代码的复杂性，设计模式就是为了解决复杂代码问题而产生的。</p>
-<p>创建型模式将创建和使用代码解耦。</p>
-<p>结构型模式将不同的功能代码解耦。</p>
-<p>行为型模式将不同的行为代码解耦。</p>
+        <h1 id="代码常用评价标准"><a href="#代码常用评价标准" class="headerlink" title="代码常用评价标准"></a>代码常用评价标准</h1><ul>
+<li>可维护性：在不破坏原有代码设计、不引入新bug的情况下，快速地修改或者添加代码。</li>
+<li>可读性</li>
+<li>可扩展性：在不修改或少量修改的情况下，添加新功能</li>
+<li>灵活性</li>
+<li>简洁性</li>
+<li>可复用性</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="主流的编程范式"><a href="#主流的编程范式" class="headerlink" title="主流的编程范式"></a>主流的编程范式</h1><ul>
+<li>面向对象编程</li>
+<li>面向过程编程</li>
+<li>函数式编程</li>
+</ul>
+<h1 id="面向对象、设计原则、设计模式、编程规范、代码重构之间的关系"><a href="#面向对象、设计原则、设计模式、编程规范、代码重构之间的关系" class="headerlink" title="面向对象、设计原则、设计模式、编程规范、代码重构之间的关系"></a>面向对象、设计原则、设计模式、编程规范、代码重构之间的关系</h1><ul>
+<li>面向对象是很多设计原则、设计模式等编码实现的基础</li>
+<li>设计原则是指导我们代码设计的一些经验总结，对于某些场景下，是否应该应用某种设计模式，具有指导意义</li>
+<li>设计模式是针对软件开发中经常遇到的一些设计问题，总结出来的一套解决方案或者设计思路，主要是为了提高代码的可扩展性</li>
+<li>编程规范主要解决的是代码的可读性问题。编程规范相对于设计原则、设计模式，更加具体、更加偏重代码细节、更加能落地。持续的小重构依赖的理论基础主要就是编程规范</li>
+<li>重构作为保持代码质量不下降的有效手段，利用的就是面向对象、设计原则、设计模式、编程规范这些理论</li>
+</ul>
 <h2 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h2><p>创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。</p>
 <ul>
-<li>单例模式<ul>
+<li><p>单例模式</p>
+<ul>
 <li>作用：用来创建全局唯一的对象。</li>
 <li>实现方式：饿汉式、懒汉式、双重检测、静态内部类、枚举。</li>
 <li>解决的问题：大资源加载等。</li>
 </ul>
 </li>
-</ul>
-<span id="more"></span>
-
+<li><p>工厂模式（工厂方法和抽象工厂）</p>
 <ul>
-<li>工厂模式（工厂方法和抽象工厂）<ul>
 <li>作用：创建类型相关但不同的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象。</li>
 <li>分类：简单工厂、工厂方法、抽象工厂。当每个对象创建逻辑都很简单时，建议使用简单工厂模式；当创建逻辑较为复杂时，建议使用工厂方法模式。</li>
 <li>解决的问题：封装变化、代码复用、隔离复杂性、控制复杂度。</li>
 </ul>
 </li>
-<li>建造者模式<ul>
+<li><p>建造者模式</p>
+<ul>
 <li>作用：创建复杂对象，可以通过设置不同的可选参数，创建不同的对象。</li>
 <li>使用场景：创建对象有很多必填属性，属性之间有一定的依赖或者约束关系，以及创建不可变对象时可以考虑使用。</li>
 </ul>
 </li>
-<li>原型模式<ul>
+<li><p>原型模式</p>
+<ul>
 <li>作用：利用已有对象进行复制的方式，来创建新对象。</li>
 <li>实现方式：深拷贝和浅拷贝。浅拷贝只复制对象中基本数据类型数据和引用对象的内存地址。深拷贝得到的是一份独立的对象。</li>
 <li>解决的问题：节省创建时间。</li>
@@ -528,7 +546,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">创建型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">结构型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">行为型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SOLID%E5%8E%9F%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">SOLID原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DRY%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.</span> <span class="toc-text">DRY原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KISS%E5%8E%9F%E5%88%99"><span class="toc-number">2.3.</span> <span class="toc-text">KISS原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#YAGNI%E5%8E%9F%E5%88%99"><span class="toc-number">2.4.</span> <span class="toc-text">YAGNI原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOD%E6%B3%95%E5%88%99"><span class="toc-number">2.5.</span> <span class="toc-text">LOD法则</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%B8%B8%E7%94%A8%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86"><span class="toc-number">1.</span> <span class="toc-text">代码常用评价标准</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E7%9A%84%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">主流的编程范式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E3%80%81%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E3%80%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%81%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83%E3%80%81%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.</span> <span class="toc-text">面向对象、设计原则、设计模式、编程规范、代码重构之间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">创建型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">结构型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">行为型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">4.</span> <span class="toc-text">设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SOLID%E5%8E%9F%E5%88%99"><span class="toc-number">4.1.</span> <span class="toc-text">SOLID原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DRY%E5%8E%9F%E5%88%99"><span class="toc-number">4.2.</span> <span class="toc-text">DRY原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KISS%E5%8E%9F%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text">KISS原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#YAGNI%E5%8E%9F%E5%88%99"><span class="toc-number">4.4.</span> <span class="toc-text">YAGNI原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOD%E6%B3%95%E5%88%99"><span class="toc-number">4.5.</span> <span class="toc-text">LOD法则</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

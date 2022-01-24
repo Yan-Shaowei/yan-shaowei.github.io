@@ -6,15 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 网络通信 | Yan Shaowei`s blog</title>
+  <title>内网连接 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yan Shaowei&#96;s blog">
-<meta property="og:url" content="http://example.com/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/index.html">
+  <meta name="description" content="如何连接两台电脑第一层（物理层）：直接使用网线连接，但是一头的水晶头要做交叉线，1-3、2-6交叉接法。同时要配置两台电脑的IP地址、子网掩码和默认网关在同一网络中。此时两台电脑已经构成了最小的局域网，即LAN。 当第三台电脑需要加入时，就要使用集线器Hub了。Hub采用的是广播模式，即一台电脑发出的包，所有的电脑都能收到。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网连接">
+<meta property="og:url" content="http://example.com/2022/01/24/%E5%86%85%E7%BD%91%E8%BF%9E%E6%8E%A5/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
+<meta property="og:description" content="如何连接两台电脑第一层（物理层）：直接使用网线连接，但是一头的水晶头要做交叉线，1-3、2-6交叉接法。同时要配置两台电脑的IP地址、子网掩码和默认网关在同一网络中。此时两台电脑已经构成了最小的局域网，即LAN。 当第三台电脑需要加入时，就要使用集线器Hub了。Hub采用的是广播模式，即一台电脑发出的包，所有的电脑都能收到。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/mac%20message.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/ARP.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/roud%20road%20problem.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/vlan.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/ICMP%20protocol.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/ping%20send%20and%20save.png">
+<meta property="article:published_time" content="2022-01-24T05:32:48.000Z">
+<meta property="article:modified_time" content="2022-01-24T05:33:55.903Z">
 <meta property="article:author" content="Yan Shaowei">
+<meta property="article:tag" content="网络通信">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/mac%20message.png">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
   
@@ -222,36 +234,95 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-内网连接" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      内网连接
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/24/%E5%86%85%E7%BD%91%E8%BF%9E%E6%8E%A5/" class="archive-article-date">
+
+        
+        <a href="/2022/01/24/%E5%86%85%E7%BD%91%E8%BF%9E%E6%8E%A5/" class="archive-article-date">
   	<time datetime="2022-01-24T05:32:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/24/%E5%86%85%E7%BD%91%E8%BF%9E%E6%8E%A5/">内网连接</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何连接两台电脑"><a href="#如何连接两台电脑" class="headerlink" title="如何连接两台电脑"></a>如何连接两台电脑</h1><h2 id="第一层（物理层）："><a href="#第一层（物理层）：" class="headerlink" title="第一层（物理层）："></a>第一层（物理层）：</h2><p>直接使用网线连接，但是一头的水晶头要做交叉线，1-3、2-6交叉接法。同时要配置两台电脑的IP地址、子网掩码和默认网关在同一网络中。此时两台电脑已经构成了最小的局域网，即LAN。</p>
+<p>当第三台电脑需要加入时，就要使用集线器Hub了。Hub采用的是广播模式，即一台电脑发出的包，所有的电脑都能收到。</p>
+<span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="第二层（数据链路层）："><a href="#第二层（数据链路层）：" class="headerlink" title="第二层（数据链路层）："></a>第二层（数据链路层）：</h2><p>MAC的全称是Medium Access Control，即媒体访问控制。用于控制在往媒体上发数据的时候，谁先发、谁后发的问题，防止发生混乱，这个问题中的规则称为多路访问。</p>
+<p>解决的算法有：</p>
+<ul>
+<li>信道划分</li>
+<li>轮流协议</li>
+<li>随机接入协议，以太网采用的就是这个方式</li>
+</ul>
+<p>链路层地址，也称为MAC地址，这一层的网络包格式：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/mac%20message.png"></p>
+<p> CRC即循环冗余检测，判断是否出现了错误。</p>
+<p>ARP协议，已知IP地址，求MAC地址的协议。</p>
+<p>当知道了IP地址，不知道MAC地址时，通过发送广播包，询问和回答的报文如下图：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/ARP.png"></p>
+<p>为了避免每次都用ARP请求，本地会进行ARP缓存，缓存过一段时间会过期。</p>
+<p>当机器数量较多时，采用Hub广播，就不可靠了。这时需要一种可以把MAC头拿下来，检查一下目标MAC地址，根据策略转发的设备，这是个二层设备，称为交换机。交换机会记录哪个MAC对应哪个口，记录的表称为转发表，也有过期时间。</p>
+<h2 id="环路问题"><a href="#环路问题" class="headerlink" title="环路问题"></a>环路问题</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/roud%20road%20problem.png"></p>
+<h3 id="STP协议"><a href="#STP协议" class="headerlink" title="STP协议"></a>STP协议</h3><p>Spanning Tree Protocol，最小生成树。</p>
+<ul>
+<li>Root Bridge：根交换机，老大</li>
+<li>Designated Bridges：指定交换机，树枝</li>
+<li>Bridge Protocol Data Units(BPDU)：网桥协议数据单元，相互比较实力的协议，只有老大能发。</li>
+<li>Priority Vector：优先级向量，即实力，值越小越牛。一组ID数目[Root Bridge ID, Root Path Cost, Bridge ID, and Port ID]。比较时，Root Bridge ID如果相同，则老大相同。Root Path Cost， 和老大的距离。</li>
+</ul>
+<h2 id="广播问题和安全问题"><a href="#广播问题和安全问题" class="headerlink" title="广播问题和安全问题"></a>广播问题和安全问题</h2><p>解决方案：</p>
+<ul>
+<li>物理隔离</li>
+<li>虚拟隔离，VLAN，虚拟局域网。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/vlan.png"></p>
+<p>VLAN需要在原来的二层头上加一个Tag，里面存有VLAN ID，一共12位，可以划分4096个VLAN。</p>
+<p>当交换机支持VLAN时，就能识别出VLAN ID，只有相同VLAN的包才会互相转发。支持VLAN的交换机，有一个Trunk口，可以转发属于任何VLAN的口，交换机之间可以通过这种口相互连接。</p>
+<h2 id="网络不通问题"><a href="#网络不通问题" class="headerlink" title="网络不通问题"></a>网络不通问题</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><p>当网络不通时，会尝试ping一下，ping是基于ICMP协议工作的。</p>
+<p>ICMP全称Internet Control Message Protocol，即互联网控制报文协议。ICMP报文是封装在IP包里的。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/ICMP%20protocol.png"></p>
+<p>ICMP报文有很多类型，不同类型代码不同。最常用的类型是主动请求为8，主动请求的应答为0</p>
+<h4 id="查询报文类型"><a href="#查询报文类型" class="headerlink" title="查询报文类型"></a>查询报文类型</h4><p>常用的ping就是查询报文，是一种主动请求，并且获得主动应答的ICMP协议。所以，ping发的包是符合ICMP协议格式的，并在后面增加了自己的格式。</p>
+<p>对ping的主动请求，进行网络抓包，称为ICMP ECHO REQUEST。同理主动请求的回复，称为ICMP ECHO REPLY。比起原生的ICMP，多了两个字段：</p>
+<ul>
+<li>标识符，用于区分请求的类型。</li>
+<li>序号，请求的序号。</li>
+</ul>
+<p>在选项数据中，ping还会存放发送请求的时间值，来计算往返时间，说明路程的长短。</p>
+<p>ping的发送和接收过程：</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/ping%20send%20and%20save.png"></p>
+<p>当遇到网络不通的问题的时候，除了直接ping目标的IP地址外，还应该有一个清晰的网络拓扑图。理论上，要清楚知道一个网络包从源地址到目标地址需要经过哪些设备，逐个ping这些设备或机器。在关键节点，通过tcpdump -i eth0 icmp,可以查看包有没有到达某个点，回复的包到达了哪个点，更容易推断出错的位置。</p>
+<h4 id="差错报文类型"><a href="#差错报文类型" class="headerlink" title="差错报文类型"></a>差错报文类型</h4><p>差错报文的例子：重点不可达为3，源抑制为4，超时为11，重定向为5。</p>
+<p>差错报文的结构相对复杂一些，除了前面还是IP，ICMP的前8字节不变，后面要跟上出错的那个IP包的IP头和IP正文的前8个字节。</p>
+<p>Traceroute使用了差错报文类型，它的一个作用是故意设置特殊的TTL，来追踪去往目的地时沿途经过的路由器。</p>
+<p>Traceroute的参数指向某个目的IP地址，它会发送一个UDP的数据包。将TTL设置为1，一旦遇到一个路由器，就表示它牺牲了。</p>
+<blockquote>
+<p>TTL是网络包里的一个值，它告诉路由器包在网络中太长时间是否需要被丢弃。TTL最初的设想是，设置超时时间，超过此范围则被丢弃。每个路由器要将TTL减一，TTL通常表示被丢弃前经过的路由器的个数。</p>
+</blockquote>
+<p>Traceroute发送的UDP数据包，会选择一个不可能的值作为UDP端口号（大于30000）。当该数据包到达时，将使目的主机的UDP模块产生一份”端口不可达“错误ICMP报文。</p>
+<p>Traceroute的另一个作用是故意设置不分片，从而确定路径的MTU。</p>
+<blockquote>
+<p>MTU：最大传输单元 (Maximum transmission unit) ； 最大传输单元是指数据链路层上面所能通过的最大数据包大小。最大传输单元这个参数通常与通信接口有关。 因特网协议允许IP分片，这样就可以将数据报包分成足够小的片段以通过那些最大传输单元小于该数据报原始大小的链路了。这一分片过程发生在IP层，它使用的是将分组发送到链路上的网络接口的最大传输单元的值。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -263,105 +334,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/24/%E5%86%85%E7%BD%91%E8%BF%9E%E6%8E%A5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/21/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" class="archive-article-date">
-  	<time datetime="2022-01-21T01:30:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/21/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络协议</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/21/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E4%B8%A4%E5%8F%B0%E7%94%B5%E8%84%91"><span class="toc-number">1.</span> <span class="toc-text">如何连接两台电脑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%EF%BC%88%E7%89%A9%E7%90%86%E5%B1%82%EF%BC%89%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">第一层（物理层）：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%EF%BC%88%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%EF%BC%89%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">第二层（数据链路层）：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">环路问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#STP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.1.</span> <span class="toc-text">STP协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E9%97%AE%E9%A2%98%E5%92%8C%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">广播问题和安全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%B8%8D%E9%80%9A%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">网络不通问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.5.1.</span> <span class="toc-text">ICMP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">查询报文类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%AE%E9%94%99%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">差错报文类型</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/02/gRPC%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2021-06-02T14:48:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/02/gRPC%E7%AE%80%E4%BB%8B/">gRPC简介</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -388,9 +473,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

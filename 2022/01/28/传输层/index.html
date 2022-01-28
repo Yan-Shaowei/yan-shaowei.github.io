@@ -6,15 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Yan Shaowei`s blog</title>
+  <title>传输层 | Yan Shaowei`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Yan Shaowei&#96;s blog">
-<meta property="og:url" content="http://example.com/archives/page/4/index.html">
+  <meta name="description" content="传输层传输层有两个重要的协议，一个是TCP，一个是UDP。 TCP是面向连接的，而UDP是面向无连接的。 而建立连接，是为了在客户端和服务端维护连接，而建立一定的数据结构来维护双方交互的状态，用这样的数据结构来保证所谓的面向连接的特性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传输层">
+<meta property="og:url" content="http://example.com/2022/01/28/%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
 <meta property="og:site_name" content="Yan Shaowei&#96;s blog">
+<meta property="og:description" content="传输层传输层有两个重要的协议，一个是TCP，一个是UDP。 TCP是面向连接的，而UDP是面向无连接的。 而建立连接，是为了在客户端和服务端维护连接，而建立一定的数据结构来维护双方交互的状态，用这样的数据结构来保证所谓的面向连接的特性。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/UDP%20head.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20head.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20connect.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20disconnect.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20status%20change.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/Advertised%20window.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/Advertised%20window%20recived.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20socket%20connection.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20socket%20in%20kernel.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/UDP%20socket%20connection.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/fork%20progress.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/do%20fork%20progress.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/epoll.png">
+<meta property="article:published_time" content="2022-01-28T08:32:48.000Z">
+<meta property="article:modified_time" content="2022-01-28T08:03:34.349Z">
 <meta property="article:author" content="Yan Shaowei">
+<meta property="article:tag" content="网络通信">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/UDP%20head.png">
   
     <link rel="alternative" href="/atom.xml" title="Yan Shaowei`s blog" type="application/atom+xml">
   
@@ -222,405 +241,289 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-传输层" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      传输层
+    </h1>
+  
+
+        
+        <a href="/2022/01/28/%E4%BC%A0%E8%BE%93%E5%B1%82/" class="archive-article-date">
+  	<time datetime="2022-01-28T08:32:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-28</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p>传输层有两个重要的协议，一个是TCP，一个是UDP。</p>
+<p>TCP是面向连接的，而UDP是面向无连接的。</p>
+<p>而建立连接，是为了在客户端和服务端维护连接，而建立一定的数据结构来维护双方交互的状态，用这样的数据结构来保证所谓的面向连接的特性。</p>
+<span id="more"></span>
+
+<p>TCP和UDP的区别：</p>
+<ul>
+<li>TCP提供可靠交付，通过TCP连接传输的数据，无差错，不丢失，不重复，且按需到达。而UDP继承了IP包的特性，不保证不丢失，不保证按顺序到达。</li>
+<li>TCP是面向字节流的，发送的时候发的是一个流，没头没尾。而UDP继承了IP的特性，基于数据包的，一个个发，一个个收。</li>
+<li>TCP可以拥塞控制。UDP不会。</li>
+<li>TCP是一个有状态服务，UDP是无状态服务。</li>
+</ul>
+<h2 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/UDP%20head.png"></p>
+<p>UDP的三大特点：</p>
+<ul>
+<li>沟通简单</li>
+<li>可以随意传输数据</li>
+<li>不会根据网络的情况进行发包的拥塞控制</li>
+</ul>
+<p>使用场景：</p>
+<ul>
+<li>需要资源少，在网络情况比较好的内网，对于丢包不敏感的应用。DHCP和PXE都是基于UDP协议的。</li>
+<li>不需要一对一沟通，建立连接，而是可以广播使用。</li>
+<li>需要处理速度快，时延低，可以容忍少数丢包，要求即使网络拥塞，也要继续传输时。</li>
+</ul>
+<p>UDP的使用案例：</p>
+<ul>
+<li>QUIC(全称Quick UDP Internet Connections，快速UDP互联网连接)，是Google提出的一种基于UDP改进的通信协议，目的是降低网络通信的延迟，提供更好的用户互动体验。QUIC在应用层会实现快速连接建立、减少重传时延、自适应拥塞控制。</li>
+<li>直播协议多使用RTMP协议，这个协议也是基于TCP的。为了提高直播的实时性，宁可丢包，不要卡顿，因而很多直播应用都基于UDP实现了自己的视频传输协议。</li>
+<li>实时游戏，采用自定义的可靠UDP协议，自定义重传策略，能够把丢包产生的延迟降到最低，减少网络问题对游戏性造成的影响。另外TCP连接需要在内核维护一些数据结构，因而一台机器能够支撑的TCP连接数目是有限的，而UDP没有连接，也就没有限制。</li>
+<li>物联网通信协议Thread，基于UDP协议。</li>
+<li>移动通信领域，4G网络中，移动流量上网的数据面对的协议GTP-U是基于UDP的。</li>
+</ul>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20head.png"></p>
+<ul>
+<li>序号：为了解决乱序问题</li>
+<li>确认序号：为了解决丢包问题</li>
+<li>状态位：<ul>
+<li>SYN：发起一个连接</li>
+<li>ACK：回复</li>
+<li>RST：重新连接</li>
+<li>FIN：结束连接</li>
+</ul>
+</li>
+<li>窗口大小：用于流量控制</li>
+<li>拥塞控制</li>
+</ul>
+<h3 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p>三次握手双方建立了连接，还会沟通TCP包的序号问题。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20connect.png"></p>
+<ul>
+<li>刚开始，客户端和服务端都处于CLOSED状态。</li>
+<li>服务端主动监听某个端口，处于LISTEN状态。</li>
+<li>客户端主动发起连接SYN，之后处于SYN-SENT状态。</li>
+<li>服务端收到发起的连接，返回SYN，并且ACK客户端的SYN，之后处于SYN-RCVD状态。</li>
+<li>客户端收到服务端发送的SYN和ACK之后，发送ACK的ACK，之后处于ESTABLISHED状态。</li>
+<li>服务端收到ACK的ACK之后，处于ESTABLISHED状态。</li>
+</ul>
+<h3 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h3><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20disconnect.png"></p>
+<ul>
+<li>当客户端收到服务端的ACK会进入FIN_WAIT_2的状态，如果服务端此时不再给客户端回复，客户端将永远在这个状态。TCP协议里并没有对这个状态的处理，但Linux有，可以调整tcp_fin_timeout这个参数，设置一个超时时间。</li>
+<li>如果服务端给客户端回复了，客户端也回复了服务端，回复丢失了。若此时客户端直接关闭，则服务端就再也收不到ACK了，因此TCP协议要求客户端最后等待一段时间TIME_WAIT，这个时间要足够长，长到服务端会重发一次回复，客户端再重发一个ACK到服务端。</li>
+<li>如果没有TIME_WAIT，还会有个问题，客户端直接关闭，端口空出。如果服务端还有包在路上，新的应用监听了这个端口，则新应用会收到这些包，可能会产生混乱。</li>
+<li>等待时间设为2MSL，MSL是Maximum Segment Lifetime，报文最大生存时间，它是任何报文在网络上存在的最长时间，超过这个时间报文会被丢弃。因为TCP报文基于IP协议的，IP头中有一个TTL域，是IP数据报可以经过的最大路由数，每经过一个处理它的路由器此值就减1，当此值为0则数据报将被丢弃，同时发送ICMP报文通知源主机。协议规定MSL为2分钟，实际应用中常用的是30秒，1分钟和2分钟等。</li>
+<li>假设服务端超过了2MSL的时间，依然没有收到它发的FIN的ACK，服务端还会重发FIN，客户端会直接发送RST。</li>
+</ul>
+<h3 id="TCP状态机"><a href="#TCP状态机" class="headerlink" title="TCP状态机"></a>TCP状态机</h3><p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20status%20change.png"></p>
+<p>其中黑粗部分是主流程，阿拉伯数字是连接过程中的顺序，大写中文数字是连接断开过程中的顺序。加粗的实线是客户端A的状态变迁，加粗的虚线是服务端B的状态变迁。</p>
+<h3 id="可靠性的保证"><a href="#可靠性的保证" class="headerlink" title="可靠性的保证"></a>可靠性的保证</h3><p>TCP为了保证顺序性，每一包都有个ID。在建立连接的时候，会商定起始的ID是什么，然后按照ID一个个发送。为了保证不丢包，对于发送的包都要进行应答，但是这个应答不是一个个来的，而是会应答某个之前的ID，表示都收到了，这种模式称为<strong>累计确认</strong>或者<strong>累计应答（cumulative acknowledgment）</strong>。</p>
+<p>为了记录所有发送的包和接收的包，TCP也需要发送端和接收端分别都有缓存来保存这些记录。</p>
+<h4 id="发送端"><a href="#发送端" class="headerlink" title="发送端"></a>发送端</h4><p>发送端的缓存里按照包的ID一个个排列，根据处理的情况分为四个部分：</p>
+<ol>
+<li>发送了并且已经确认了。</li>
+<li>发送了但尚未确认的。</li>
+<li>没有发送，但是已经等待发送的。</li>
+<li>没有发送，并且暂时还不会发送的。</li>
+</ol>
+<p>后两部分就是为了进行流量控制。</p>
+<p>TCP里，接收端会给发送端报一个窗口的大小，称为Advertised window。窗口的大小等于第二部分+第三部分。超过这个窗口，接收端做不过来，就不能发送了。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/Advertised%20window.png"></p>
+<h4 id="接收端"><a href="#接收端" class="headerlink" title="接收端"></a>接收端</h4><p>接收端来讲，它的缓存里记录的内容要简单一些：</p>
+<ol>
+<li>接受并且确认过的。</li>
+<li>还没接收，但是马上就能接收的。</li>
+<li>还没接收，也没法接收的。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/Advertised%20window%20recived.png"></p>
+<h2 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h2><p>Socket可以作为插口或者插槽讲，通信时相当于弄一根网线一头插在客户端，一头插在服务端。所以在通信前，双方都要建立一个Socket。</p>
+<p>Socket编程进行的是端到端的通信，能够设置的参数也是端到端网络层和传输层的。在网络层，Socket函数需要指定IPv4还是IPv6，分别对应AF_INET和AF_INET6。另外还要指定是TCP还是UDP，TCP协议是基于数据流的，设置为SOCK_STREAM，UDP是基于数据报的，因而设置为SOCK_DGRAM。</p>
+<h3 id="基于TCP协议的Socket程序函数调用过程"><a href="#基于TCP协议的Socket程序函数调用过程" class="headerlink" title="基于TCP协议的Socket程序函数调用过程"></a>基于TCP协议的Socket程序函数调用过程</h3><p>TCP的服务端需要先监听一个端口，一般先调用bind函数，给Socket赋予一个IP地址和端口，内核通过端口找到这个应用程序，而一台机器可能有多个网卡/IP地址，可以监听所有/一个网卡，只有发到这个网卡的包才会给到这个应用程序。</p>
+<p>当服务端有了IP和端口号，就可以调用listen函数进行监听。在TCP的状态图里面，有一个listen状态，调用了这个函数后，服务端就进入了这个状态，客户端就可以发起连接了。</p>
+<p>在内核中，为每个Socket维护两个队列，一个是已经建立了连接的队列，三次握手已经完毕，处于established状态；一个是还没完全建立连接的队列，三次握手还没完成，处于syn_rcvd的状态。</p>
+<p>接下来，服务端调用accept函数，拿出一个已经完成的连接进行处理，如果没有完成，就要等待。</p>
+<p>在服务端等待时，客户端可以通过connect函数发起连接。先在参数中指明要连接的IP地址和端口号，然后发起三次握手。内核会给客户端分配一个临时的端口。一旦握手成功，服务端的accept就返回另一个Socket。</p>
+<p>所以监听的Socket和真正传输数据的Socket是两个，一个叫<strong>监听Socket</strong>，一个叫<strong>已连接Socket</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20socket%20connection.png"></p>
+<p>连接建立成功后，双方开始通过read和write函数来读写数据，就像往一个文件流里写东西一样。Socket在Linux中就是以文件的形式存在，还存在文件描述符。写入和读出也是通过文件描述符。</p>
+<p>在内核中Socket是一个文件，对应有文件描述符。每一个进程都有一个数据结构task_struct，里面指向一个文件描述符数组，来列出这个进程打开的所有文件的文件描述符。文件描述符是一个整数，是这个数组的下标。</p>
+<p>这个数组中的内容是一个指针，指向内核中所有打开的文件的列表。既然是一个文件，就会有一个inode，socket对应的inode是在内存中，而真正的文件系统是保存在硬盘上的。这个inode中，指向了Socket在内核中的Socket结构。</p>
+<p>这个结构中有两个队列，一个是发送队列，一个是接收队列。队列里保存的是一个缓存sk_buff。这个缓存里面能看到完整的包结构。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/tcp%20socket%20in%20kernel.png"></p>
+<h3 id="基于UDP协议的Socket程序函数调用过程"><a href="#基于UDP协议的Socket程序函数调用过程" class="headerlink" title="基于UDP协议的Socket程序函数调用过程"></a>基于UDP协议的Socket程序函数调用过程</h3><p>UDP是没有连接的，不需要三次握手，不需要调用listen和connect。但是UDP的交互仍然需要IP和端口号，因此需要bind。</p>
+<p>UDP是没有维护连接状态的，因而不需要每对连接建立一组Socket，而是只要有一个Socket，就能够和多个客户端通信。也正是因为没有连接状态，每次通信时，都调用sendto和recvfrom，都可以传入IP地址和端口。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/UDP%20socket%20connection.png"></p>
+<h3 id="一个服务器的最大连接数"><a href="#一个服务器的最大连接数" class="headerlink" title="一个服务器的最大连接数"></a>一个服务器的最大连接数</h3><p>系统会用一个四元组来标识一个TCP连接：</p>
+<blockquote>
+<p>{本机IP，本机端口，对端IP，对端端口}</p>
+</blockquote>
+<p>服务器的IP和端口一般固定，只有客户端的IP和端口是可变的，因此最大TCP连接数 = 客户端IP数x客户端端口数。对于IPv4，客户端的IP数最多为2的32次方，客户端的端口数最多为2的16次方，也就是服务端单机最大TCP连接数约为2的48次方。</p>
+<p>但服务端最大并发TCP连接数达不到理论上限：</p>
+<ul>
+<li>文件描述符限制，Socket都是文件，所以首先要通过ulimit配置文件描述符的数目。</li>
+<li>内存的限制，每个TCP连接都要占用一定内存，操作系统是有限的。</li>
+</ul>
+<h3 id="提高服务端最大并发连接数："><a href="#提高服务端最大并发连接数：" class="headerlink" title="提高服务端最大并发连接数："></a>提高服务端最大并发连接数：</h3><h4 id="多进程方式"><a href="#多进程方式" class="headerlink" title="多进程方式"></a>多进程方式</h4><p>每建立一个请求，创建一个子进程，将基于已连接Socket的交互交给这个新的子进程来做。</p>
+<p>在 Linux 下，创建子进程使用 fork 函数。fork函数会在父进程的基础上完全拷贝一个子进程。在 Linux 内核中，会复制文件描述符的列表，也会复制内存空间，还会复制一条记录当前执行到了哪一行程序的进程。复制完毕之后，父进程和子进程都会记录当前刚刚执行完 fork。这两个进程刚复制完的时候，几乎一模一样，只是根据 fork 的返回值来区分到底是父进程，还是子进程。如果返回值是 0，则是子进程；如果返回值是其他的整数，就是父进程。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/fork%20progress.jpg"></p>
+<p>因为复制了文件描述符列表，而文件描述符都是指向整个内核统一的打开文件列表的，因而父进程刚才因为accept创建的已连接Socket也是一个文件描述符，同样也会被子进程获得。</p>
+<p>子进程可以通过这个已连接Socket和客户端进行互通，当通信完毕后，就可以退出进程。父进程fork返回的整数就是子进程的ID，父进程可以通过这个ID查看子进程是否完成项目，是否需要退出。</p>
+<h4 id="多线程方式"><a href="#多线程方式" class="headerlink" title="多线程方式"></a>多线程方式</h4><p>相比于多进程，多线程的方式更加轻量。在Linux下，通过pthread_create创建一个线程，调用do_fork。虽然新的线程在task列表会新创建一项，但很多资源，例如文件描述符列表、进程空间还是共享的。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/do%20fork%20progress.png"></p>
+<p>新线程通过已连接Socket处理请求，达到并发处理的目的。</p>
+<blockquote>
+<p>C10K，一台机器要维护1万个连接。</p>
+</blockquote>
+<p>C10K问题下要创建1万个线程，操作系统是无法承受的。</p>
+<h4 id="IO多路复用，一个线程维护多个Socket"><a href="#IO多路复用，一个线程维护多个Socket" class="headerlink" title="IO多路复用，一个线程维护多个Socket"></a>IO多路复用，一个线程维护多个Socket</h4><p>由于 Socket 是文件描述符，因而某个线程盯的所有的 Socket，都放在一个文件描述符集合 fd_set 中，这就是项目进度墙，然后调用 select 函数来监听文件描述符集合是否有变化。一旦有变化，就会依次查看每个文件描述符。那些发生变化的文件描述符在 fd_set 对应的位都设为 1，表示 Socket 可读或者可写，从而可以进行读写操作，然后再调用 select，接着盯着下一轮的变化。</p>
+<h4 id="IO多路复用，回调"><a href="#IO多路复用，回调" class="headerlink" title="IO多路复用，回调"></a>IO多路复用，回调</h4><p>通过轮询的方式，需要将全部项目都过一遍的方式来查看进度。因而使用select，能够同时盯的项目数量由FD_SETSIZE限制。</p>
+<p>如果不使用轮询，通过注册callback函数的方式，当某个文件描述符发生变化的时候，就会主动通知，能完成这件事的函数叫epoll。</p>
+<p><img src="https://raw.githubusercontent.com/Yan-Shaowei/blogPicture/main/img/internet/epoll.png"></p>
+<p>epoll_create创建一个epoll对象，也是一个文件，对应一个文件描述符，同样也对应着打开文件列表中的一项。在这项里面有一个红黑树，在红黑树里，要保存这个epoll要监听的所有Socket。</p>
+<p>当epoll_ctl添加一个Socket的时候，其实是加入这个红黑树，同时红黑树里面的节点指向一个结构，将这个结构挂在被监听的Socket的事件列表中。当一个Socket来个事件的时候，可以从这个列表中得到epoll对象，并调用call back通知它。</p>
+<p>这种通知方式使得监听的Socket数据增加的时候，效率不会大幅度降低，能够同时监听的Socket的数目也非常的多了。上限就为系统定义的、进程打开的最大文件描述符个数。因而，epoll被称为解决C10K问题的利器。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/21/FreeMarker/" class="archive-article-date">
-  	<time datetime="2021-04-20T17:21:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/21/FreeMarker/">FreeMarker</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络通信</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/28/%E4%BC%A0%E8%BE%93%E5%B1%82/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-04-19T15:43:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/26/%E5%A4%96%E7%BD%91%E8%BF%9E%E6%8E%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">外网连接</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/19/Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F/">Java提供了哪些IO方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">1.</span> <span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.</span> <span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">TCP的三次握手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">TCP的四次挥手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">1.2.3.</span> <span class="toc-text">TCP状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">可靠性的保证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E7%AB%AF"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">发送端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E7%AB%AF"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">接收端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket"><span class="toc-number">1.3.</span> <span class="toc-text">Socket</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84Socket%E7%A8%8B%E5%BA%8F%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">基于TCP协议的Socket程序函数调用过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EUDP%E5%8D%8F%E8%AE%AE%E7%9A%84Socket%E7%A8%8B%E5%BA%8F%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">基于UDP协议的Socket程序函数调用过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E8%BF%9E%E6%8E%A5%E6%95%B0"><span class="toc-number">1.3.3.</span> <span class="toc-text">一个服务器的最大连接数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0%EF%BC%9A"><span class="toc-number">1.3.4.</span> <span class="toc-text">提高服务端最大并发连接数：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">多进程方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">多线程方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E7%BB%B4%E6%8A%A4%E5%A4%9A%E4%B8%AASocket"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">IO多路复用，一个线程维护多个Socket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%8C%E5%9B%9E%E8%B0%83"><span class="toc-number">1.3.4.4.</span> <span class="toc-text">IO多路复用，回调</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-04-17T05:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-17</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/17/Java%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/">Java基础（2）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/15/Java%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-04-15T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/15/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/13/%E6%8E%A2%E7%B4%A2%E4%BB%A5%E5%BF%AB%E8%91%97%E7%A7%B0%E7%9A%84Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-04-13T13:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/13/%E6%8E%A2%E7%B4%A2%E4%BB%A5%E5%BF%AB%E8%91%97%E7%A7%B0%E7%9A%84Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">探索以快著称的Redis的数据结构</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/Redis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-04-12T15:15:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/10/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%B9%8B%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-04-09T22:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/10/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%B9%8B%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/">Java类加载之双亲委派模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/08/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-04-08T15:00:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/08/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型和引用数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/08/Java%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2021-04-08T14:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/08/Java%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B/">Java集合简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2021-04-06T14:35:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/06/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/">如何高效阅读源码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -648,8 +551,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
